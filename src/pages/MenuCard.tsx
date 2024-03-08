@@ -12,7 +12,7 @@ const ManuCard = () => {
  		<PageContainer container>
 			 <Box sx={{textAlign: "center"}}>
 				<PageTitle>Étlap</PageTitle>
-				<MenuImage src={menuImage.url} />
+				<MenuImage src={menuImage?.url} />
 				<StructuredText data={menuCard}></StructuredText> 
 			 </Box>
 		</PageContainer> 

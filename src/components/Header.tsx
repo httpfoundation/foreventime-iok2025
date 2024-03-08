@@ -16,6 +16,7 @@ import {
   Tooltip,
   Zoom,
 } from "@mui/material";
+import { darken } from '@mui/material/styles';
 
 import {
   Home as HomeIcon,
@@ -33,7 +34,7 @@ import {
 import React, { useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useStages, usePageTitle, useRegistration } from "../Store";
-import iokLogo from "../assets/images/httpiok2023_logo_w-b-w_sm.png";
+import iokLogo from "../assets/images/httpiok2024_logo_w-b-w_sm.png";
 //import iokLogo from "../assets/images/iok2022_logo_w_httpw_sm.png"
 //import educationnextLogo from "../assets/images/educationnextlogo_inverz.png"
 import { styled } from "@mui/system";
@@ -105,7 +106,7 @@ const Header = () => {
         anchor="right"
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
-        PaperProps={{ sx: { bgcolor: "primary.dark" } }}
+        PaperProps={{ sx: { bgcolor: theme => darken(theme.palette.primary.main, 0.35) } }}
       >
         <Box
           sx={{

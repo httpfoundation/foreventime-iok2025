@@ -11,38 +11,19 @@ const educationnextCreativeDarkGreen = "#7e923f"
 const educationnextCreativeDarkBlue = "#42518a"
 const educationnextCreativeLightGreen = "#edffcf" */
 
-/**
-$primary: #bde7ff; //buttons
-$light: #fff;
-$dark: #363c56;
-$dark-more: #202333;
-$grey: #4F4F4F;
-$lightgrey: #BDBDBD;
-$bg-light: #fff;
-$bg-primary: #8b7ca6; // header alatti sáv
-$bg-secondary: #363c56; // header háttér
-$iok-yellow: #fadd99;
-$h1-color: $iok-yellow;
-$iok-light: #bde7ff;
-$iok-lightblue: adjust-color($dark, $lightness: 25%);
-$iok-lightgrey: #bde7ff; // info section background
-$iok-lightgreen: #a7ede2;
-$iok-sponsor-grey: #e9ecef;
- */
-
 const iokBlue = "#363c56"
 const iokBlue1 = "#8b7ca6"
-const iokDarkBlue = "#002939"
-const iokLightBlue = "#d6f4f5"
+const iokDarkBlue = "#3a5067"
+const iokLightBlue = "#7892aa"
 
-const iokAmber = "#a7ede2"
+const iokAmber = "#fadd99"
 const iokLightAmber = "#fde9d1"
 const iokDarkAmber = "#a86236"
 
 const iokWhite = "rgba(255, 255, 255, 0.87)"
 const iokBlack ="rgba(0, 0, 0, 0.87)"
 
-const iokInfo = "#336274"
+const iokInfo = "#526c84"
 
 const iokCyan = "#48abb9"
 
@@ -138,7 +119,7 @@ let theme = createTheme({
 		  styleOverrides: {
 			tooltip: {
 			  lineHeight: "1.2rem !important",
-			  backgroundColor: "rgb(91, 129, 143, 0.9)",
+			  backgroundColor: "rgb(58, 80, 103, 0.8)",
 			  marginTop: "5rem",
 			}
 		  }

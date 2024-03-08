@@ -75,7 +75,7 @@ const Bubble = (props: BubbleProps) => {
 		light
 	}
 	return (
-		<Tooltip title={title ?? ""} placement={tooltipPlacement ?? "top"} arrow  >
+		<Tooltip title={title ?? ""} placement={tooltipPlacement ?? "top"} >
 			<BubbleWrapper bubbleWrapperProps={bubbleWrapperProps} onMouseEnter = {() => {if (hoverImg) setImage(hoverImg)}} onMouseLeave={() => {if (hoverImg) setImage(img)}}>
 				<LinkOrOnClick external={external} to={to} onClick={props.onClick}>
 					<>
@@ -134,7 +134,7 @@ const BubbleWrapper = styled("div",
 			display: "inlineBlock",
 			position: "relative",
 			aspectRatio: "1",
-			backgroundColor: (bubbleWrapperProps.light) ? theme.palette.info.light :theme.palette.primary.dark,
+			backgroundColor: (bubbleWrapperProps.light) ? theme.palette.primary.light :theme.palette.primary.dark,
 			transition: "transform 0.2s, box-shadow 0.2s ",
 			...bubbleWrapperProps,
 			"&:hover": {
