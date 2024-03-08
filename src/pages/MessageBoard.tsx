@@ -56,7 +56,7 @@ const Message = (props: {message?: DatoMessage, notification?: boolean, onHide?:
 				<CardHeader
 				avatar={<Avatar src={staff.image?.url}></Avatar>}
 				title={staff.name}
-				subheader="IOK 2023"
+				subheader="IOK 2024"
 				titleTypographyProps={{fontWeight: 600}}
 				sx={{pb: 2, px: 0, pt: 1}}
 				/>

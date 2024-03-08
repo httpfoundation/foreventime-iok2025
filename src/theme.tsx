@@ -11,12 +11,31 @@ const educationnextCreativeDarkGreen = "#7e923f"
 const educationnextCreativeDarkBlue = "#42518a"
 const educationnextCreativeLightGreen = "#edffcf" */
 
-const iokBlue = "#003b52"
-const iokBlue1 = "#14475C"
+/**
+$primary: #bde7ff; //buttons
+$light: #fff;
+$dark: #363c56;
+$dark-more: #202333;
+$grey: #4F4F4F;
+$lightgrey: #BDBDBD;
+$bg-light: #fff;
+$bg-primary: #8b7ca6; // header alatti sáv
+$bg-secondary: #363c56; // header háttér
+$iok-yellow: #fadd99;
+$h1-color: $iok-yellow;
+$iok-light: #bde7ff;
+$iok-lightblue: adjust-color($dark, $lightness: 25%);
+$iok-lightgrey: #bde7ff; // info section background
+$iok-lightgreen: #a7ede2;
+$iok-sponsor-grey: #e9ecef;
+ */
+
+const iokBlue = "#363c56"
+const iokBlue1 = "#8b7ca6"
 const iokDarkBlue = "#002939"
 const iokLightBlue = "#d6f4f5"
 
-const iokAmber = "#f18c4e"
+const iokAmber = "#a7ede2"
 const iokLightAmber = "#fde9d1"
 const iokDarkAmber = "#a86236"
 
@@ -39,7 +58,7 @@ const colorPrimaryText = iokWhite
 const colorSecondaryBackground = iokAmber
 /* const colorSecondaryDark = iokAmber */
 const colorSecondaryLight = iokLightAmber
-const colorSecondaryText = iokWhite
+const colorSecondaryText = iokBlue
 
 const colorInfoBackground = iokBlue //iokBlueGrey
 
