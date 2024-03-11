@@ -90,7 +90,7 @@ const useRegistrationData = (
             "&eventId=iok2024"
         );
         const data = await res.json();
-        if (data.id) {
+        if (data.dato_token) {
           setRegistrationData(data);
           iokLocalStorage("set", "iok_registration_data", JSON.stringify(data));
           window.history.replaceState(
@@ -110,7 +110,8 @@ const useRegistrationData = (
           id: null,
           name: "Résztvevő",
           webex_access_token: null,
-          dato_token: "5b4d0c68817732d4ac571d61e85fd7", // LiveVisitor token, EducationNext2022
+          dato_token: "29b8e5c1b0b9682175278954d89a77", // LiveVisitor token, IOK2024
+          // dato_token: "5b4d0c68817732d4ac571d61e85fd7", // LiveVisitor token, EducationNext2022
           //"dato_token": "86562f6d25113edf16c2608cedf976", // LiveVisitor token, IOK2022
           stage: null,
           onsite: false,
