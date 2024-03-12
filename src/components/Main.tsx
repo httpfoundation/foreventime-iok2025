@@ -1,8 +1,8 @@
 import { Box } from '@mui/material';
 import { MessageNotifications } from '../pages/MessageBoard';
 import { Attendance } from './Attendance';
-
 import Router from './Router';
+import BottomBar from './BottomBar';
 
 const Main = () => {
   return (
@@ -19,6 +19,7 @@ const Main = () => {
       <Router />
       <MessageNotifications />
       <Attendance />
+      <BottomBar />
     </Box>
   );
 };
