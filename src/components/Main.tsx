@@ -6,8 +6,8 @@ import Router from './Router'
 
 const Main = () => {
 	return (
-		<Box sx={{ mt: {xs: '56px', md: '64px'}, overflowY: 'auto', 
-				height: {xs: 'calc(100% - 56px)', md: 'calc(100% - 64px)',
+		<Box sx={{ mt: {xs: '47px', md: '47px'}, overflowY: 'auto', 
+				height: {xs: 'calc(100% - 47px)', md: 'calc(100% - 47px)',
 				}, backgroundColor: "primary.main" }} 
 				component="main" id="main">
 			<Router />

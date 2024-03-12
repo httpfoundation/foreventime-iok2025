@@ -15,8 +15,9 @@ import {
   Fab,
   Tooltip,
   Zoom,
+  useMediaQuery,
 } from "@mui/material";
-import { darken } from '@mui/material/styles';
+import { darken, useTheme } from '@mui/material/styles';
 
 import {
   Home as HomeIcon,
@@ -34,7 +35,8 @@ import {
 import React, { useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useStages, usePageTitle, useRegistration } from "../Store";
-import iokLogo from "../assets/images/httpiok2024_logo_w-b-w_sm.png";
+import iokLogoWide from "../assets/img/IOK Logo Wide.png";
+import iokLogoNarrow from "../assets/img/IOK Logo Narrow.png";
 //import iokLogo from "../assets/images/iok2022_logo_w_httpw_sm.png"
 //import educationnextLogo from "../assets/images/educationnextlogo_inverz.png"
 import { styled } from "@mui/system";
@@ -56,6 +58,9 @@ const Header = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [registration, loading] = useRegistration();
   const stages = useStages();
+
+  const theme = useTheme();
+  const underMd = useMediaQuery(theme.breakpoints.down('md'));
 
   const menuItems = useMemo<(MenuItem | DividerMenuItem)[]>(
     () => [
@@ -157,19 +162,21 @@ const Header = () => {
         </Box>
       </Drawer>
 
+      <Box sx={{ position: 'absolute', left: 0, top: 0, zIndex: (theme) => theme.zIndex.drawer + 2}}>
+        <Link to="/">
+          <img src={underMd ? iokLogoNarrow : iokLogoWide} alt="IOK Logo" style={{ height: '75px' }} />
+        </Link>
+      </Box>
+
       <AppBar
         position="fixed"
-        color="primary"
+        color={"info" as any}
         sx={{
           zIndex: (theme) => theme.zIndex.drawer + 1,
+          backgroundColor: 'info.light'
         }}
       >
-        <Toolbar>
-          <Box sx={{ flex: "0 0 auto", transform: "translateY(2px)" }}>
-            <Link to="/">
-              <Logo src={iokLogo} />{" "}
-            </Link>
-          </Box>
+        <Toolbar sx={{ minHeight:'0 !important' }}>
           <Typography
             variant="h6"
             noWrap

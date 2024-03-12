@@ -76,7 +76,9 @@ let theme = createTheme({
 		  contrastText: colorSecondaryText,
 		},
 		info: {
-		  main: colorInfo, // '#f18c4e',
+		  main: colorInfo,
+			light: '#ade1f7',
+			contrastText: iokBlue
 		  //dark: colorDashboardDark,
 
 		},
