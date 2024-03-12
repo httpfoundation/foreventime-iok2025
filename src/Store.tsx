@@ -1,6 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import Dashboard from "./components/Dashboard";
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import {
   DatoStage,
   DatoSpeaker,
@@ -13,9 +11,9 @@ import {
   DatoStream,
   DashboardElement,
   SponsorCategory,
-} from "./types";
-import useQuery from "./useQuery";
-import { iokLocalStorage } from "./utils";
+} from './types';
+import useQuery from './useQuery';
+import { iokLocalStorage } from './utils';
 
 export interface IStore {
   stages: DatoStage[];
@@ -41,7 +39,7 @@ export const Store = createContext<IStore>({
   talks: [],
   streams: [],
   breakoutRooms: [],
-  pageTitle: "IOK 2024",
+  pageTitle: 'IOK 2024',
   setPageTitle: (t: string) => {},
   registration: null,
   registrationLoading: true,
@@ -64,10 +62,9 @@ type RegistrationData = {
 
 const useRegistrationData = (
   regId: string | null,
-  regNeeded = true
+  regNeeded = true,
 ): [RegistrationData | null, boolean, boolean] => {
-  const [registrationData, setRegistrationData] =
-    useState<RegistrationData | null>(null);
+  const [registrationData, setRegistrationData] = useState<RegistrationData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const event = useEvent();
@@ -77,51 +74,45 @@ const useRegistrationData = (
       if (
         regId &&
         String(regId) !==
-          String(
-            JSON.parse(
-              iokLocalStorage("get", "iok_registration_data") as string
-            )?.id
-          )
+          String(JSON.parse(iokLocalStorage('get', 'iok_registration_data') as string)?.id)
       ) {
-        iokLocalStorage("remove", "iok_registration_data");
+        iokLocalStorage('remove', 'iok_registration_data');
         const res = await fetch(
-          "https://wy8qg2hpoh.execute-api.eu-west-1.amazonaws.com/default/iokRegistrationData?id=" +
+          'https://wy8qg2hpoh.execute-api.eu-west-1.amazonaws.com/default/iokRegistrationData?id=' +
             regId +
-            "&eventId=iok2024"
+            '&eventId=iok2024',
         );
         const data = await res.json();
         if (data.dato_token) {
           setRegistrationData(data);
-          iokLocalStorage("set", "iok_registration_data", JSON.stringify(data));
+          iokLocalStorage('set', 'iok_registration_data', JSON.stringify(data));
           window.history.replaceState(
             null,
-            "",
-            window.location.href.replace(window.location.search, "")
+            '',
+            window.location.href.replace(window.location.search, ''),
           );
         } else {
           setError(true);
         }
-      } else if (iokLocalStorage("get", "iok_registration_data")) {
-        setRegistrationData(
-          JSON.parse(iokLocalStorage("get", "iok_registration_data") as string)
-        );
+      } else if (iokLocalStorage('get', 'iok_registration_data')) {
+        setRegistrationData(JSON.parse(iokLocalStorage('get', 'iok_registration_data') as string));
       } else if (!regNeeded) {
         const data = {
           id: null,
-          name: "Résztvevő",
+          name: 'Résztvevő',
           webex_access_token: null,
-          dato_token: "29b8e5c1b0b9682175278954d89a77", // LiveVisitor token, IOK2024
+          dato_token: '29b8e5c1b0b9682175278954d89a77', // LiveVisitor token, IOK2024
           // dato_token: "5b4d0c68817732d4ac571d61e85fd7", // LiveVisitor token, EducationNext2022
           //"dato_token": "86562f6d25113edf16c2608cedf976", // LiveVisitor token, IOK2022
           stage: null,
           onsite: false,
         };
         setRegistrationData(data);
-        iokLocalStorage("set", "iok_registration_data", JSON.stringify(data));
+        iokLocalStorage('set', 'iok_registration_data', JSON.stringify(data));
         window.history.replaceState(
           null,
-          "",
-          window.location.href.replace(window.location.search, "")
+          '',
+          window.location.href.replace(window.location.search, ''),
         );
       }
       setLoading(false);
@@ -335,7 +326,7 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
       allStreams: [],
       allDashboardElements: [],
       allSponsorCategories: [],
-    }
+    },
   );
   const {
     allStages: stages,
@@ -365,11 +356,10 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
     return talks;
   }, [stages]);
 
-  const [pageTitle, setPageTitle] = useState("IOK 2024");
+  const [pageTitle, setPageTitle] = useState('IOK 2024');
 
-  const regId = new URLSearchParams(window.location.search).get("q") || null;
-  const [registration, registrationLoading, registrationError] =
-    useRegistrationData(regId, true); // TODO: lambdaból jöjjön
+  const regId = new URLSearchParams(window.location.search).get('q') || null;
+  const [registration, registrationLoading, registrationError] = useRegistrationData(regId, true); // TODO: lambdaból jöjjön
 
   const store: IStore = useMemo(
     () => ({
@@ -405,7 +395,7 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
       streams,
       dashboardElements,
       sponsorCategories,
-    ]
+    ],
   );
 
   return <Store.Provider value={store}>{props.children}</Store.Provider>;
@@ -422,7 +412,7 @@ export const usePresenterWithTalksByStage = (presenterSlug: string | null) => {
   const stages = store.stages;
   const presenter = useMemo(
     () => store.presenters.find((p) => p.slug === presenterSlug),
-    [presenterSlug, store.presenters]
+    [presenterSlug, store.presenters],
   );
 
   const talksByStage = useMemo(
@@ -431,19 +421,14 @@ export const usePresenterWithTalksByStage = (presenterSlug: string | null) => {
         .map((stage) => ({
           ...stage,
           schedule: stage.schedule?.filter(
-            (talk) =>
-              talk.speaker.filter((speaker) => speaker.id === presenter?.id)
-                .length
+            (talk) => talk.speaker.filter((speaker) => speaker.id === presenter?.id).length,
           ),
         }))
         .filter((stage) => stage.schedule?.length),
-    [stages, presenter?.id]
+    [stages, presenter?.id],
   );
 
-  return useMemo(
-    () => ({ ...presenter, talksByStage }),
-    [presenter, talksByStage]
-  );
+  return useMemo(() => ({ ...presenter, talksByStage }), [presenter, talksByStage]);
 };
 
 export const usePresenters = () => {
@@ -499,15 +484,12 @@ export const useTalk = (talkId?: string | number) => {
 
   const talk = useMemo(
     () => store.talks.find((t) => String(t.id) === String(talkId)),
-    [talkId, store.talks]
+    [talkId, store.talks],
   );
-  const speakerIds = useMemo(
-    () => talk?.speaker?.map((s) => s.id),
-    [talk?.speaker]
-  );
+  const speakerIds = useMemo(() => talk?.speaker?.map((s) => s.id), [talk?.speaker]);
   const speakers = useMemo(
     () => store.presenters.filter((p) => speakerIds?.includes(p.id)),
-    [store.presenters, speakerIds]
+    [store.presenters, speakerIds],
   );
 
   return useMemo(() => ({ ...talk, speakers }), [talk, speakers]);
@@ -522,17 +504,9 @@ export const usePageTitle = () => {
   return store.pageTitle;
 };
 
-export const useRegistration = (): [
-  RegistrationData | null,
-  boolean,
-  boolean
-] => {
+export const useRegistration = (): [RegistrationData | null, boolean, boolean] => {
   const store = useStore();
-  return [
-    store.registration,
-    store.registrationLoading,
-    store.registrationError,
-  ];
+  return [store.registration, store.registrationLoading, store.registrationError];
 };
 
 export const useMessages = () => {
@@ -552,7 +526,7 @@ export const useEvent = () => {
 export const useDashboardElements = (type: string) => {
   const store = useStore();
   const dashboardElements = store.dashboardElements.filter(
-    (element) => element.dashboardType === type
+    (element) => element.dashboardType === type,
   );
   return dashboardElements;
 };

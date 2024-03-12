@@ -16,7 +16,7 @@ import {
   Tooltip,
   Zoom,
   useMediaQuery,
-} from "@mui/material";
+} from '@mui/material';
 import { darken, useTheme } from '@mui/material/styles';
 
 import {
@@ -30,16 +30,16 @@ import {
   Logout as LogoutIcon,
   Info as InfoIcon,
   ArrowBack as ArrowBackIcon,
-} from "@mui/icons-material";
+} from '@mui/icons-material';
 
-import React, { useEffect, useMemo, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useStages, usePageTitle, useRegistration } from "../Store";
-import iokLogoWide from "../assets/img/IOK Logo Wide.png";
-import iokLogoNarrow from "../assets/img/IOK Logo Narrow.png";
+import React, { useEffect, useMemo, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useStages, usePageTitle, useRegistration } from '../Store';
+import iokLogoWide from '../assets/img/IOK Logo Wide.png';
+import iokLogoNarrow from '../assets/img/IOK Logo Narrow.png';
 //import iokLogo from "../assets/images/iok2022_logo_w_httpw_sm.png"
 //import educationnextLogo from "../assets/images/educationnextlogo_inverz.png"
-import { styled } from "@mui/system";
+import { styled } from '@mui/system';
 
 type MenuItem = {
   label: string;
@@ -64,19 +64,19 @@ const Header = () => {
 
   const menuItems = useMemo<(MenuItem | DividerMenuItem)[]>(
     () => [
-      { label: "Köszöntő", to: "/koszonto", icon: <EventNoteIcon /> },
-      { label: "Program", to: "/eloadasok", icon: <EventNoteIcon /> },
-      { label: "Előadók", to: "/eloadok", icon: <PeopleIcon /> },
+      { label: 'Köszöntő', to: '/koszonto', icon: <EventNoteIcon /> },
+      { label: 'Program', to: '/eloadasok', icon: <EventNoteIcon /> },
+      { label: 'Előadók', to: '/eloadok', icon: <PeopleIcon /> },
       { divider: true },
       {
-        label: "Szekciók",
+        label: 'Szekciók',
         divider: true,
         icon: (
           <LiveTvIcon
             sx={{
               mr: 1,
-              transform: "translateY(5px)",
-              color: "rgba(0, 0, 0, 0.4)",
+              transform: 'translateY(5px)',
+              color: 'rgba(0, 0, 0, 0.4)',
             }}
           />
         ),
@@ -86,18 +86,18 @@ const Header = () => {
         to: `/szekcio/${stage.slug}`,
       })),
       { divider: true },
-      { label: "IOK Cafe", to: "/iok-cafe", icon: <CoffeeIcon /> },
-      { label: "Támogatók", to: "/tamogatok", icon: <StarIcon /> },
-      { label: "Értékelő űrlap", to: "/ertekeles", icon: <StarIcon /> },
+      { label: 'IOK Cafe', to: '/iok-cafe', icon: <CoffeeIcon /> },
+      { label: 'Támogatók', to: '/tamogatok', icon: <StarIcon /> },
+      { label: 'Értékelő űrlap', to: '/ertekeles', icon: <StarIcon /> },
       { divider: true },
-      { label: "Kijelentkezés", to: "/kijelentkezes", icon: <LogoutIcon /> },
+      { label: 'Kijelentkezés', to: '/kijelentkezes', icon: <LogoutIcon /> },
     ],
-    [stages]
+    [stages],
   );
 
   const pageTitle = usePageTitle();
   useEffect(() => {
-    document.title = pageTitle ? "IOK 2024 | " + pageTitle : "IOK 2024";
+    document.title = pageTitle ? 'IOK 2024 | ' + pageTitle : 'IOK 2024';
   }, [pageTitle]);
 
   const location = useLocation();
@@ -111,14 +111,14 @@ const Header = () => {
         anchor="right"
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
-        PaperProps={{ sx: { bgcolor: theme => darken(theme.palette.primary.main, 0.35) } }}
+        PaperProps={{ sx: { bgcolor: (theme) => darken(theme.palette.primary.main, 0.35) } }}
       >
         <Box
           sx={{
             width: 370,
-            pt: "64px",
-            maxWidth: "calc(100vw - 20px)",
-            backgroundColor: "primary.main",
+            pt: '64px',
+            maxWidth: 'calc(100vw - 20px)',
+            backgroundColor: 'primary.main',
           }}
           role="presentation"
         >
@@ -143,17 +143,13 @@ const Header = () => {
                 >
                   {menuItem.icon && (
                     <ListItemIcon>
-                      <Avatar
-                        sx={{ bgcolor: selected ? "secondary.main" : "" }}
-                      >
+                      <Avatar sx={{ bgcolor: selected ? 'secondary.main' : '' }}>
                         {menuItem.icon}
                       </Avatar>
                     </ListItemIcon>
                   )}
                   <ListItemText>
-                    <span style={{ fontWeight: selected ? 600 : 500 }}>
-                      {menuItem.label}
-                    </span>
+                    <span style={{ fontWeight: selected ? 600 : 500 }}>{menuItem.label}</span>
                   </ListItemText>
                 </ListItemButton>
               );
@@ -162,25 +158,31 @@ const Header = () => {
         </Box>
       </Drawer>
 
-      <Box sx={{ position: 'absolute', left: 0, top: 0, zIndex: (theme) => theme.zIndex.drawer + 2}}>
+      <Box
+        sx={{ position: 'absolute', left: 0, top: 0, zIndex: (theme) => theme.zIndex.drawer + 2 }}
+      >
         <Link to="/">
-          <img src={underMd ? iokLogoNarrow : iokLogoWide} alt="IOK Logo" style={{ height: '75px' }} />
+          <img
+            src={underMd ? iokLogoNarrow : iokLogoWide}
+            alt="IOK Logo"
+            style={{ height: '75px' }}
+          />
         </Link>
       </Box>
 
       <AppBar
         position="fixed"
-        color={"info" as any}
+        color={'info' as any}
         sx={{
           zIndex: (theme) => theme.zIndex.drawer + 1,
-          backgroundColor: 'info.light'
+          backgroundColor: 'info.light',
         }}
       >
-        <Toolbar sx={{ minHeight:'0 !important' }}>
+        <Toolbar sx={{ minHeight: '0 !important' }}>
           <Typography
             variant="h6"
             noWrap
-            sx={{ flex: 1, transform: "translateY(2px)" }}
+            sx={{ flex: 1, transform: 'translateY(2px)' }}
             align="center"
           >
             {/* {pageTitle} */}
@@ -189,14 +191,14 @@ const Header = () => {
             variant="h6"
             noWrap
             sx={{
-              flex: "0 0 auto",
-              transform: "translateY(2px)",
+              flex: '0 0 auto',
+              transform: 'translateY(2px)',
               mr: 2,
-              display: { xs: "none", md: "block" },
+              display: { xs: 'none', md: 'block' },
             }}
             align="center"
           >
-            {registration?.id ? registration?.name : ""}
+            {registration?.id ? registration?.name : ''}
           </Typography>
           <IconButton
             size="large"
@@ -209,17 +211,17 @@ const Header = () => {
           </IconButton>
         </Toolbar>
       </AppBar>
-      {location.pathname !== "/" && (
+      {location.pathname !== '/' && (
         <Zoom in>
           <Tooltip title="Vissza az aulába" placement="bottom" arrow>
             <Fab
               color="secondary"
               aria-label="home"
               sx={{
-                position: "absolute",
+                position: 'absolute',
                 right: 30,
-                top: { lg: 80, xs: "unset" },
-                bottom: { lg: "unset", xs: 10 },
+                top: { lg: 80, xs: 'unset' },
+                bottom: { lg: 'unset', xs: 10 },
                 zIndex: 800,
               }}
               component={Link}
@@ -231,21 +233,17 @@ const Header = () => {
         </Zoom>
       )}
 
-      {location.pathname !== "/infopult" && isInfoButtonVisible && (
+      {location.pathname !== '/infopult' && isInfoButtonVisible && (
         <Zoom in>
-          <Tooltip
-            title="Tovább az információs pulthoz"
-            placement="bottom"
-            arrow
-          >
+          <Tooltip title="Tovább az információs pulthoz" placement="bottom" arrow>
             <Fab
               color="secondary"
               sx={{
-                position: "absolute",
-                right: location.pathname !== "/" ? 100 : 30,
+                position: 'absolute',
+                right: location.pathname !== '/' ? 100 : 30,
                 top: 80,
                 zIndex: 800,
-                display: { lg: "flex", xs: "none" },
+                display: { lg: 'flex', xs: 'none' },
               }}
               component={Link}
               to="/infopult"
@@ -256,17 +254,17 @@ const Header = () => {
         </Zoom>
       )}
 
-      {location.pathname !== "/" && !location.pathname.includes("/szekcio") && (
+      {location.pathname !== '/' && !location.pathname.includes('/szekcio') && (
         <Zoom in>
           <Tooltip title="Vissza" placement="bottom" arrow>
             <Fab
               color="secondary"
               sx={{
-                position: "absolute",
-                right: location.pathname !== "/infopult" ? 100 : 100,
+                position: 'absolute',
+                right: location.pathname !== '/infopult' ? 100 : 100,
                 top: 80,
                 zIndex: 800,
-                display: { lg: "flex", xs: "none" },
+                display: { lg: 'flex', xs: 'none' },
               }}
               onClick={() => navigate(-1)}
             >
@@ -279,7 +277,7 @@ const Header = () => {
   );
 };
 
-const Logo = styled("img")`
+const Logo = styled('img')`
   padding-top: 5px;
   height: 38px;
   /*width: 207px;*/

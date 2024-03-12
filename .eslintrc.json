@@ -1,19 +1,18 @@
 {
-	"extends": ["react-app"],
-	
-	
-	"overrides": [
-		{
-			"files": ["**/*.ts?(x)"],
-			"rules": {
-				"semi": ["warn", "never"],
-				"no-restricted-imports": [
-					"error",
-					{
-						"patterns": ["@mui/*/*", "!@mui/material/styles", "!@mui/material/colors"]
-					}
-				]
-			}
-		}
-	]
+  "extends": ["react-app"],
+
+  "overrides": [
+    {
+      "files": ["**/*.ts?(x)"],
+      "rules": {
+        "semi": "off",
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": ["@mui/*/*", "!@mui/material/styles", "!@mui/material/colors"]
+          }
+        ]
+      }
+    }
+  ]
 }

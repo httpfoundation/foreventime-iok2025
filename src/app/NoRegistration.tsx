@@ -10,75 +10,66 @@ import {
   Box,
   Grow,
   Zoom,
-} from "@mui/material";
-import React, { useState } from "react";
-import { Login as LoginIcon } from "@mui/icons-material";
-import imageOnTop from "../assets/img/itmp-1.png";
-import { useRegistration } from "../Store";
+} from '@mui/material';
+import React, { useState } from 'react';
+import { Login as LoginIcon } from '@mui/icons-material';
+import imageOnTop from '../assets/img/itmp-1.png';
+import { useRegistration } from '../Store';
 
 export const NoRegistration = () => {
   const [registration, loading, error] = useRegistration();
-  const [id, setId] = useState("");
+  const [id, setId] = useState('');
 
   const login = (e: React.FormEvent) => {
     e.preventDefault();
-    window.location.href =
-      window.location.origin + window.location.pathname + "?q=" + id;
+    window.location.href = window.location.origin + window.location.pathname + '?q=' + id;
   };
 
   return (
     <Box
       sx={{
-        height: "100%",
-        overflowY: "auto",
-        backgroundColor: "primary.main",
+        height: '100%',
+        overflowY: 'auto',
+        backgroundColor: 'primary.main',
         p: { xs: 2, md: 6 },
       }}
     >
       <Paper
         elevation={10}
         sx={{
-          margin: "auto",
-          bgcolor: "primary.main",
+          margin: 'auto',
+          bgcolor: 'primary.main',
           p: 4,
-          color: "text.primary",
-          borderRadius: "8px",
-          textAlign: "center",
-          width: "600px",
-          maxWidth: "100%",
-          fontWeight: "600",
+          color: 'text.primary',
+          borderRadius: '8px',
+          textAlign: 'center',
+          width: '600px',
+          maxWidth: '100%',
+          fontWeight: '600',
         }}
       >
         {error && (
           <Zoom in>
-            <Alert severity="error" sx={{ mb: 4, textAlign: "left", pr: 3 }}>
-              <AlertTitle
-                sx={{ pt: "3px", fontWeight: 700, textAlign: "left" }}
-              >
+            <Alert severity="error" sx={{ mb: 4, textAlign: 'left', pr: 3 }}>
+              <AlertTitle sx={{ pt: '3px', fontWeight: 700, textAlign: 'left' }}>
                 Érvénytelen kód
               </AlertTitle>
-              A link, amire kattintottál, vagy az általad megadott kód
-              érvénytelen.
+              A link, amire kattintottál, vagy az általad megadott kód érvénytelen.
               <br />
-              Amennyiben már regisztráltál, kattints az e-mailben kapott linkre,
-              vagy add meg az oldal alján az egyedi kódodat.
+              Amennyiben már regisztráltál, kattints az e-mailben kapott linkre, vagy add meg az
+              oldal alján az egyedi kódodat.
               <br />
-              Ha még nem regisztráltál, akkor kattints az alábbi "Regisztráció"
-              gombra.
+              Ha még nem regisztráltál, akkor kattints az alábbi "Regisztráció" gombra.
             </Alert>
           </Zoom>
         )}
-        <Typography variant="h5" sx={{ fontWeight: "bold", mb: 4 }}>
+        <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 4 }}>
           Az IOK 2024 konferencián való részvétel regisztrációhoz kötött!!
         </Typography>
-        <img
-          src={imageOnTop}
-          alt=""
-          style={{ width: "200px", maxWidth: "70%" }}
-        />
+        <img src={imageOnTop} alt="" style={{ width: '200px', maxWidth: '70%' }} />
         <Typography variant="body1" component="p" sx={{ my: 1 }}>
-          Regisztrálj, és emailben megkapod a bejelentkezéshez használható
-          személyes linkedet és a személyes kódodat!
+          Regisztrálj, és emailben megkapod a bejelentkezéshez használható személyes linkedet és a
+          személyes kódodat!
         </Typography>
 
         <Button
@@ -92,13 +83,9 @@ export const NoRegistration = () => {
         </Button>
 
         <Divider color="#fff" sx={{ my: 4 }} />
-        <Typography
-          variant="body1"
-          component="p"
-          sx={{ fontSize: "0.9rem", mb: 1, mt: 2 }}
-        >
-          Amennyiben már regisztráltál, kattints az e-mailben kapott linkre,
-          vagy add meg az egyedi kódodat:
+        <Typography variant="body1" component="p" sx={{ fontSize: '0.9rem', mb: 1, mt: 2 }}>
+          Amennyiben már regisztráltál, kattints az e-mailben kapott linkre, vagy add meg az egyedi
+          kódodat:
         </Typography>
         <form onSubmit={login}>
           <TextField
@@ -106,9 +93,9 @@ export const NoRegistration = () => {
             onChange={(e) => setId(e.target.value)}
             placeholder="Egyedi kód"
             sx={{
-              width: "300px",
-              input: { textAlign: "center" },
-              fieldset: { borderColor: "#fff !important" },
+              width: '300px',
+              input: { textAlign: 'center' },
+              fieldset: { borderColor: '#fff !important' },
             }}
           />
           <Tooltip title="Belépés" arrow placement="right">
@@ -116,9 +103,9 @@ export const NoRegistration = () => {
               type="submit"
               variant="contained"
               color="secondary"
-              sx={{ ml: 1, mt: "6px", height: "49px" }}
+              sx={{ ml: 1, mt: '6px', height: '49px' }}
             >
-              <LoginIcon sx={{ transform: "translateX(-2px)" }} />
+              <LoginIcon sx={{ transform: 'translateX(-2px)' }} />
             </Button>
           </Tooltip>
         </form>
