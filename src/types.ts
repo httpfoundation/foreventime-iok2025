@@ -120,7 +120,7 @@ export type DatoComplex = {
 };
 
 export type DatoMessage = {
-  id: number;
+  id: string;
   title: string;
   message: StructuredTextDocument;
   level: 1 | 2 | 3;

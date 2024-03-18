@@ -2,10 +2,10 @@ import { ThemeProvider } from '@mui/material/styles';
 import theme from '../theme';
 import { Box, CircularProgress, CssBaseline } from '@mui/material';
 
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Navigate } from 'react-router-dom';
 import Main from '../components/Main';
 import Header from '../components/Header';
-import { StoreProvider, useRegistration } from '../Store';
+import { StoreProvider, useError, useRegistration } from '../Store';
 import React from 'react';
 
 import { NoRegistration } from './NoRegistration';
@@ -28,6 +28,7 @@ const App = () => {
 
 const RegistrationLoadSpinner = (props: { children: React.ReactNode }) => {
   const [registration, loading] = useRegistration();
+  const error = useError();
 
   if (loading)
     return (
@@ -37,14 +38,17 @@ const RegistrationLoadSpinner = (props: { children: React.ReactNode }) => {
         <CircularProgress color="secondary" size={60} />
       </Box>
     );
-  if (!registration)
-    return (
-      <>
-        <CssBaseline />
-        <NoRegistration />
-      </>
-    );
-  return props.children as JSX.Element;
+
+  if (error || registration) {
+    return props.children as JSX.Element;
+  }
+
+  return (
+    <>
+      <CssBaseline />
+      <NoRegistration />
+    </>
+  );
 };
 
 export default App;
