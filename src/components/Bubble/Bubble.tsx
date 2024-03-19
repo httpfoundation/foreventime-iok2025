@@ -3,7 +3,7 @@
 */
 
 import { styled } from '@mui/material/styles';
-import { Tooltip, Typography } from '@mui/material';
+import { Theme, Tooltip, Typography, useMediaQuery } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { Fade as Grow } from '@mui/material';
 import { useState } from 'react';
@@ -109,6 +109,7 @@ const Bubble = (props: BubbleProps) => {
   const width = size === 'xs' ? '350px' : size === 'lg' ? '200px' : '450px';
   const borderRadius = size === 'xs' ? '250px' : size === 'lg' ? '140px' : '350px';
   const [image, setImage] = useState(img);
+  const underMd = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
 
   const bubbleWrapperProps = {
     width,
@@ -134,7 +135,12 @@ const Bubble = (props: BubbleProps) => {
             <BubbleDecoration bubbleWrapperProps={bubbleWrapperProps}></BubbleDecoration>
             <Grow in style={{ transformOrigin: '0 0 0' }} {...{ timeout: timeout }}>
               <BubbleContent>
-                <BubbleImage src={image} alt={caption} width={imgWidth} size={size} />
+                <BubbleImage
+                  src={underMd ? hoverImg : image}
+                  alt={caption}
+                  width={imgWidth}
+                  size={size}
+                />
 
                 {/* 	{props.children} */}
                 <BubbleCaption sx={{}}>{caption}</BubbleCaption>

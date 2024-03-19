@@ -1,10 +1,11 @@
-import { Box } from '@mui/material';
+import { Box, Theme, useMediaQuery } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import httpLogo from '../assets/img/HTTP Logo.png';
 
 const BottomBar = () => {
   const { pathname } = useLocation();
-  const hideBottomBar = pathname.startsWith('/stage') || pathname.startsWith('/szekcio');
+  const underMd = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
+  const hideBottomBar = pathname.startsWith('/stage') || pathname.startsWith('/szekcio') || underMd;
 
   if (hideBottomBar) return null;
 
