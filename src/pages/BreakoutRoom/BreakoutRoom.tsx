@@ -108,14 +108,13 @@ const BreakoutRoom = () => {
 		}
 	}, [rooms]) */
 
-  const iokCafeImages = [iokCafe0, iokCafe1, iokCafe2, iokCafe3];
-
   const dashboardItems: DashboardElement[] = rooms.map((room, index) => ({
     caption: room.title,
     mobileOrder: index,
     title: '',
     light: true,
-    img: { url: iokCafeImages[index % iokCafeImages.length] },
+    img: room.img,
+    hoverImg: room.hoverImg,
     //img: iokCafeImages[index],
     corner: 'none',
     onClick: () => {

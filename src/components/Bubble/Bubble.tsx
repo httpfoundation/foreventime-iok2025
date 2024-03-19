@@ -11,7 +11,7 @@ import { hover } from '@testing-library/user-event/dist/hover';
 
 interface BubbleProps {
   corner?: 'bl' | 'br' | 'tl' | 'tr' | 'none';
-  size?: 'xs' | 'lg' | 'xl' | 'xxl';
+  size?: 'xs' | 'lg' | 'xl' | 'xxl' | 'sm' | 'md';
   color?: 'light' | 'primary';
   shadow?: boolean;
   smallText?: boolean;
@@ -132,7 +132,9 @@ const Bubble = (props: BubbleProps) => {
       >
         <LinkOrOnClick external={external} to={to} onClick={props.onClick}>
           <>
-            <BubbleDecoration bubbleWrapperProps={bubbleWrapperProps}></BubbleDecoration>
+            {!underMd && (
+              <BubbleDecoration bubbleWrapperProps={bubbleWrapperProps}></BubbleDecoration>
+            )}
             <Grow in style={{ transformOrigin: '0 0 0' }} {...{ timeout: timeout }}>
               <BubbleContent>
                 <BubbleImage
@@ -219,7 +221,16 @@ const BubbleImage = styled('img', {
   if (width) return width;
   else
     return {
-      width: size === 'xl' ? '140px' : size === 'lg' ? '100px' : '100%',
+      width:
+        size === 'xl'
+          ? '140px'
+          : size === 'lg'
+          ? '100px'
+          : size === 'md'
+          ? '100px'
+          : size === 'sm'
+          ? '140px'
+          : '60px',
       marginLeft: '-0px',
     };
 });

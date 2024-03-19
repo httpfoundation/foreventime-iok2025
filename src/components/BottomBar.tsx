@@ -10,23 +10,26 @@ const BottomBar = () => {
   if (hideBottomBar) return null;
 
   return (
-    <Box
-      sx={{
-        height: '47px',
-        bgcolor: 'info.light',
-        position: 'absolute',
-        left: 0,
-        bottom: 0,
-        right: 0,
-        zIndex: 100,
-      }}
-    >
-      <img
-        src={httpLogo}
-        alt="HTTP Logo"
-        style={{ position: 'absolute', right: 0, bottom: 0, height: '85px' }}
-      />
-    </Box>
+    <>
+      <Box sx={{ mt: '47px' }}></Box>
+      <Box
+        sx={{
+          height: '47px',
+          bgcolor: 'info.light',
+          position: 'absolute',
+          left: 0,
+          bottom: 0,
+          right: 0,
+          zIndex: 100,
+        }}
+      >
+        <img
+          src={httpLogo}
+          alt="HTTP Logo"
+          style={{ position: 'absolute', right: 0, bottom: 0, height: '85px', width: 'auto' }}
+        />
+      </Box>
+    </>
   );
 };
 

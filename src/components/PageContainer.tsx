@@ -14,7 +14,7 @@ const PageContainer = (props: {
       <PageHeaderTitle title={props.title} />
       <Parent
         sx={{
-          px: { md: 4, xs: 2 },
+          px: { md: 4, xs: 0 },
           pt: 2,
           pb: { xs: 4, md: 2 },
           backgroundColor: props.light ? 'primary.light' : 'primary.main',

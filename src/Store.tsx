@@ -185,6 +185,12 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
 				title
 				roomId
 				enabled
+        img {
+          url
+        }
+        hoverImg {
+          url
+        }
 			}
 			allSponsorCategories(first: 100 ) {
                 name
