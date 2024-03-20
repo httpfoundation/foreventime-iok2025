@@ -5,13 +5,19 @@ import httpLogo from '../assets/img/HTTP Logo.png';
 const BottomBar = () => {
   const { pathname } = useLocation();
   const underMd = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
-  const hideBottomBar = pathname.startsWith('/stage') || pathname.startsWith('/szekcio') || underMd;
+  const smallHeight = useMediaQuery('screen and (max-height: 650px)');
 
-  if (hideBottomBar) return null;
+  const hideBottomBar = pathname.startsWith('/stage') || pathname.startsWith('/szekcio') || underMd;
+  const showBottomPadding =
+    ['/tamogatok', '/eloadasok', '/ertekeles', '/http-csapat', '/etlap', '/utmutato'].includes(
+      pathname,
+    ) || pathname.startsWith('/eloadok');
+
+  if (hideBottomBar || smallHeight) return null;
 
   return (
     <>
-      <Box sx={{ mt: '47px' }}></Box>
+      <Box sx={{ mt: '47px', display: showBottomPadding ? 'block' : 'none' }}></Box>
       <Box
         sx={{
           height: '47px',

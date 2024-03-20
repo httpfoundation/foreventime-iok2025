@@ -183,6 +183,7 @@ const BubbleWrapper = styled('div', {
   //border: `2px solid ${theme.palette.secondary.main}`,
   display: 'inlineBlock',
   position: 'relative',
+  zIndex: 101,
   aspectRatio: '1',
   backgroundColor: bubbleWrapperProps.light
     ? theme.palette.primary.light
@@ -230,7 +231,7 @@ const BubbleImage = styled('img', {
           ? '100px'
           : size === 'sm'
           ? '140px'
-          : '60px',
+          : '70px',
       marginLeft: '-0px',
     };
 });
