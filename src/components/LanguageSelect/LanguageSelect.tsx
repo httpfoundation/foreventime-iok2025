@@ -8,11 +8,13 @@ const LanguageSelect = (props: {
   live?: boolean;
   onChange: (language: number | null) => void;
 }) => {
-  const { options, value, onChange, live } = props;
+  const { options, value, onChange } = props;
 
   if (options && !options.length) return null;
 
   //if (options && options.length === 1) return <Chip avatar={<Avatar alt={} src="/static/images/avatar/1.jpg" /> label={options[0].name} icon={<LanguageIcon />} />
+
+  if ((options ?? []).length < 2) return null;
 
   return (
     <>
