@@ -27,8 +27,9 @@ const Sponsors = () => {
                   flexWrap: 'wrap',
                   justifyContent: 'center',
                   gap: '10px',
-                  padding: 0,
+                  padding: '10px 0',
                   listStyle: 'none',
+                  backgroundColor: '#ade1f7',
                 }}
               >
                 {category.sponsor &&

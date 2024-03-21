@@ -8,7 +8,7 @@ interface DashboardItemProps {
   title?: string;
   subtitle?: string;
   corner?: 'bl' | 'br' | 'tl' | 'tr' | 'none';
-  size?: 'xs' | 'lg' | 'xl' | 'xxl';
+  size?: 'xs' | 'lg' | 'xl' | 'xxl' | 'sm' | 'md';
   color?: 'light' | 'primary';
   shadow?: boolean;
   smallText?: boolean;
@@ -23,6 +23,7 @@ interface DashboardItemProps {
   xs: number;
   xl?: number;
   lg?: number;
+  md?: number;
   imgWidth?: string;
   empty?: boolean;
   light?: boolean;
@@ -50,8 +51,18 @@ const Dashboard = (props: { items: DashboardElement[] }) => {
   const upperThanLg = useMediaQuery(theme.breakpoints.up('lg'));
   const upperThanMd = useMediaQuery(theme.breakpoints.up('md'));
   const upperThanXl = useMediaQuery(theme.breakpoints.up('xl'));
-  const size = upperThanXl ? 'xl' : upperThanLg ? 'lg' : 'xs';
-  const xs = 12;
+  const upperThanSm = useMediaQuery(theme.breakpoints.up('sm'));
+  const size = upperThanXl
+    ? 'xl'
+    : upperThanLg
+    ? 'lg'
+    : upperThanMd
+    ? 'md'
+    : upperThanSm
+    ? 'sm'
+    : 'xs';
+  const xs = 6;
+  const md = 4;
   const xl = 3;
   const lg = 3;
 
@@ -64,8 +75,8 @@ const Dashboard = (props: { items: DashboardElement[] }) => {
       <Grid
         container
         direction={'row'}
-        spacing={5}
-        sx={{ maxHeight: 'calc(100vh - 162px)', maxWidth: size === 'xl' ? '100%' : '80%' }}
+        spacing={upperThanMd ? 5 : 2}
+        sx={{ maxHeight: 'calc(100vh - 162px)', maxWidth: size === 'xl' ? '100%' : '90%' }}
         display="flex"
         alignItems="center"
         justifyContent="center"
@@ -82,6 +93,7 @@ const Dashboard = (props: { items: DashboardElement[] }) => {
               xs={xs}
               xl={xl}
               lg={lg}
+              md={md}
               size={size}
               title={title}
               light={light}
@@ -117,6 +129,7 @@ export const DashboardItem = (props: DashboardItemProps) => {
     onClick,
     hoverImg,
     external,
+    md,
   } = props;
 
   if (empty) return <Grid item xs={xs} xl={xl} lg={lg} display="flex"></Grid>;
@@ -127,6 +140,7 @@ export const DashboardItem = (props: DashboardItemProps) => {
       xs={xs}
       xl={xl}
       lg={lg}
+      md={md}
       display="flex"
       alignItems="center"
       justifyContent="center"

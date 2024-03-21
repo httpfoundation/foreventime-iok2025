@@ -78,6 +78,12 @@ export type DatoBreakoutRoom = {
   slug: string;
   roomId?: string;
   enabled: boolean;
+  img: {
+    url: string;
+  };
+  hoverImg?: {
+    url: string;
+  };
 };
 
 export type DatoStaff = {

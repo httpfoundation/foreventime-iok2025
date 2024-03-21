@@ -3,7 +3,7 @@
 */
 
 import { styled } from '@mui/material/styles';
-import { Tooltip, Typography } from '@mui/material';
+import { Theme, Tooltip, Typography, useMediaQuery } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { Fade as Grow } from '@mui/material';
 import { useState } from 'react';
@@ -11,7 +11,7 @@ import { hover } from '@testing-library/user-event/dist/hover';
 
 interface BubbleProps {
   corner?: 'bl' | 'br' | 'tl' | 'tr' | 'none';
-  size?: 'xs' | 'lg' | 'xl' | 'xxl';
+  size?: 'xs' | 'lg' | 'xl' | 'xxl' | 'sm' | 'md';
   color?: 'light' | 'primary';
   shadow?: boolean;
   smallText?: boolean;
@@ -109,6 +109,7 @@ const Bubble = (props: BubbleProps) => {
   const width = size === 'xs' ? '350px' : size === 'lg' ? '200px' : '450px';
   const borderRadius = size === 'xs' ? '250px' : size === 'lg' ? '140px' : '350px';
   const [image, setImage] = useState(img);
+  const underMd = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
 
   const bubbleWrapperProps = {
     width,
@@ -131,10 +132,17 @@ const Bubble = (props: BubbleProps) => {
       >
         <LinkOrOnClick external={external} to={to} onClick={props.onClick}>
           <>
-            <BubbleDecoration bubbleWrapperProps={bubbleWrapperProps}></BubbleDecoration>
+            {!underMd && (
+              <BubbleDecoration bubbleWrapperProps={bubbleWrapperProps}></BubbleDecoration>
+            )}
             <Grow in style={{ transformOrigin: '0 0 0' }} {...{ timeout: timeout }}>
               <BubbleContent>
-                <BubbleImage src={image} alt={caption} width={imgWidth} size={size} />
+                <BubbleImage
+                  src={underMd ? hoverImg : image}
+                  alt={caption}
+                  width={imgWidth}
+                  size={size}
+                />
 
                 {/* 	{props.children} */}
                 <BubbleCaption sx={{}}>{caption}</BubbleCaption>
@@ -175,6 +183,7 @@ const BubbleWrapper = styled('div', {
   //border: `2px solid ${theme.palette.secondary.main}`,
   display: 'inlineBlock',
   position: 'relative',
+  zIndex: 101,
   aspectRatio: '1',
   backgroundColor: bubbleWrapperProps.light
     ? theme.palette.primary.light
@@ -213,7 +222,16 @@ const BubbleImage = styled('img', {
   if (width) return width;
   else
     return {
-      width: size === 'xl' ? '140px' : size === 'lg' ? '100px' : '100%',
+      width:
+        size === 'xl'
+          ? '140px'
+          : size === 'lg'
+          ? '100px'
+          : size === 'md'
+          ? '100px'
+          : size === 'sm'
+          ? '140px'
+          : '70px',
       marginLeft: '-0px',
     };
 });
