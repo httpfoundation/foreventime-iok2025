@@ -249,7 +249,7 @@ const StagePage = () => {
             )}
 
             {stage?.name &&
-              (!selectedStreamId || (!selectedStream?.live && !stage.staticVideo?.url)) && (
+              !((selectedStreamId && !selectedStream?.live) || stage.staticVideo?.url) && (
                 <NoStream />
               )}
           </Grid>
@@ -372,9 +372,9 @@ const StagePage = () => {
   );
 };
 
-const YouTubeVideoPatch = YouTubeVideo as any
+const YouTubeVideoPatch = YouTubeVideo as any;
 
-const YoutubeVideoComponent = (props: { videoId: string })  => {
+const YoutubeVideoComponent = (props: { videoId: string }) => {
   return (
     <YouTubeVideoPatch
       /* key={key} */

@@ -145,7 +145,9 @@ const Bubble = (props: BubbleProps) => {
                 />
 
                 {/* 	{props.children} */}
-                <BubbleCaption sx={{}}>{caption}</BubbleCaption>
+                <BubbleCaption sx={{ fontSize: { xs: '11px', sm: '13px' } }}>
+                  {caption}
+                </BubbleCaption>
               </BubbleContent>
             </Grow>
           </>
