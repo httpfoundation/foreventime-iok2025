@@ -24,7 +24,7 @@ export const Questions = (props: { schedule?: DatoTalk[]; stageId?: number }) =>
   const store = useStore();
 
   const [anonymus, setAnonymus] = useState(false);
-  const [targetTalk, setTargetTalk] = useState<number>(0);
+  const [targetTalk, setTargetTalk] = useState<string>('');
   const [targetSpeaker, setTargetSpeaker] = useState<number>(-1);
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(false);
@@ -62,7 +62,7 @@ export const Questions = (props: { schedule?: DatoTalk[]; stageId?: number }) =>
       });
       setContent('');
       setTargetSpeaker(-1);
-      setTargetTalk(0);
+      setTargetTalk('');
       setSuccess(true);
     } catch (e) {
       console.log(e);
@@ -102,7 +102,7 @@ export const Questions = (props: { schedule?: DatoTalk[]; stageId?: number }) =>
             <Select
               value={targetTalk}
               label="Előadás"
-              onChange={(e) => setTargetTalk(Number(e.target.value))}
+              onChange={(e) => setTargetTalk(e.target.value)}
               color="secondary"
               required
             >
