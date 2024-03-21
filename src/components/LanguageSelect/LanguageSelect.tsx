@@ -8,11 +8,13 @@ const LanguageSelect = (props: {
   live?: boolean;
   onChange: (language: number | null) => void;
 }) => {
-  const { options, value, onChange, live } = props;
+  const { options, value, onChange } = props;
 
   if (options && !options.length) return null;
 
   //if (options && options.length === 1) return <Chip avatar={<Avatar alt={} src="/static/images/avatar/1.jpg" /> label={options[0].name} icon={<LanguageIcon />} />
+
+  if ((options ?? []).length < 2) return null;
 
   return (
     <>
@@ -33,12 +35,11 @@ const LanguageSelect = (props: {
           }
           color="secondary"
           key={option.language.id}
-          label={
-            option.language.name +
-            ' (' +
-            (option.live ? option.language.liveLabel : option.language.recordingLabel) +
-            ')'
-          }
+          label={`${option.language.name} ${
+            !option.language.liveLabel
+              ? ''
+              : `(${option.live ? option.language.liveLabel : option.language.recordingLabel})`
+          }`}
           icon={option.language.image?.url ? undefined : <LanguageIcon />}
           onClick={() => onChange(option.language.id)}
           deleteIcon={<DoneIcon sx={{ color: 'grey.300' }} />}
