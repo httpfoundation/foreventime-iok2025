@@ -3,8 +3,12 @@ import { MessageNotifications } from '../pages/MessageBoard';
 import { Attendance } from './Attendance';
 import Router from './Router';
 import BottomBar from './BottomBar';
+import { useError } from '../Store';
+import Error from '../pages/Error';
 
 const Main = () => {
+  const error = useError();
+
   return (
     <Box
       sx={{
@@ -16,9 +20,15 @@ const Main = () => {
       component="main"
       id="main"
     >
-      <Router />
-      <MessageNotifications />
-      <Attendance />
+      {!error ? (
+        <>
+          <Router />
+          <MessageNotifications />
+          <Attendance />
+        </>
+      ) : (
+        <Error />
+      )}
       <BottomBar />
     </Box>
   );

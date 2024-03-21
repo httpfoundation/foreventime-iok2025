@@ -12,7 +12,7 @@ import {
   DashboardElement,
   SponsorCategory,
 } from './types';
-import useQuery from './useQuery';
+import useQuery, { QueryError } from './useQuery';
 import { iokLocalStorage } from './utils';
 
 export interface IStore {
@@ -31,6 +31,7 @@ export interface IStore {
   staff: DatoStaff[];
   dashboardElements: DashboardElement[];
   sponsorCategories: SponsorCategory[];
+  error: QueryError | null;
 }
 
 export const Store = createContext<IStore>({
@@ -49,6 +50,7 @@ export const Store = createContext<IStore>({
   staff: [],
   dashboardElements: [],
   sponsorCategories: [],
+  error: null,
 });
 
 type RegistrationData = {
@@ -123,7 +125,7 @@ const useRegistrationData = (
 };
 
 export const StoreProvider = (props: { children: React.ReactElement }) => {
-  const [data] = useQuery<DatoComplex>(
+  const [data, error] = useQuery<DatoComplex>(
     `
 		{
 			allStages(orderBy: [order_ASC]) {
@@ -384,6 +386,7 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
       staff,
       dashboardElements,
       sponsorCategories,
+      error: stages.length === 0 ? error : null,
     }),
     [
       stages,
@@ -401,6 +404,7 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
       streams,
       dashboardElements,
       sponsorCategories,
+      error,
     ],
   );
 
@@ -523,6 +527,11 @@ export const useMessages = () => {
 export const useStreams = () => {
   const store = useStore();
   return store.streams;
+};
+
+export const useError = () => {
+  const store = useStore();
+  return store.error;
 };
 
 export const useEvent = () => {

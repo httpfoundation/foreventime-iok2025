@@ -34,7 +34,7 @@ import {
 
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useStages, usePageTitle, useRegistration } from '../Store';
+import { useStages, usePageTitle, useRegistration, useError } from '../Store';
 import iokLogoWide from '../assets/img/IOK Logo Wide.png';
 import iokLogoNarrow from '../assets/img/IOK Logo Narrow.png';
 //import iokLogo from "../assets/images/iok2022_logo_w_httpw_sm.png"
@@ -58,6 +58,7 @@ const Header = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [registration, loading] = useRegistration();
   const stages = useStages();
+  const error = useError();
 
   const theme = useTheme();
   const underMd = useMediaQuery(theme.breakpoints.down('md'));
@@ -178,7 +179,7 @@ const Header = () => {
           backgroundColor: 'info.light',
         }}
       >
-        <Toolbar sx={{ minHeight: '0 !important' }}>
+        <Toolbar sx={{ minHeight: '0 !important', height: '47px' }}>
           <Typography
             variant="h6"
             noWrap
@@ -200,78 +201,86 @@ const Header = () => {
           >
             {registration?.id ? registration?.name : ''}
           </Typography>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            onClick={() => setDrawerOpen(!drawerOpen)}
-          >
-            <MenuIcon />
-          </IconButton>
+
+          {!error && (
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              onClick={() => setDrawerOpen(!drawerOpen)}
+            >
+              <MenuIcon />
+            </IconButton>
+          )}
         </Toolbar>
       </AppBar>
-      {location.pathname !== '/' && (
-        <Zoom in>
-          <Tooltip title="Vissza az aulába" placement="bottom" arrow>
-            <Fab
-              color="secondary"
-              aria-label="home"
-              sx={{
-                position: 'absolute',
-                right: 30,
-                top: { lg: 80, xs: 'unset' },
-                bottom: { lg: 'unset', xs: 10 },
-                zIndex: 800,
-              }}
-              component={Link}
-              to="/"
-            >
-              <HomeIcon />
-            </Fab>
-          </Tooltip>
-        </Zoom>
-      )}
 
-      {location.pathname !== '/infopult' && isInfoButtonVisible && (
-        <Zoom in>
-          <Tooltip title="Tovább az információs pulthoz" placement="bottom" arrow>
-            <Fab
-              color="secondary"
-              sx={{
-                position: 'absolute',
-                right: location.pathname !== '/' ? 100 : 30,
-                top: 80,
-                zIndex: 800,
-                display: { lg: 'flex', xs: 'none' },
-              }}
-              component={Link}
-              to="/infopult"
-            >
-              <InfoIcon />
-            </Fab>
-          </Tooltip>
-        </Zoom>
-      )}
+      {!error && (
+        <>
+          {location.pathname !== '/' && (
+            <Zoom in>
+              <Tooltip title="Vissza az aulába" placement="bottom" arrow>
+                <Fab
+                  color="secondary"
+                  aria-label="home"
+                  sx={{
+                    position: 'absolute',
+                    right: 30,
+                    top: { lg: 80, xs: 'unset' },
+                    bottom: { lg: 'unset', xs: 10 },
+                    zIndex: 800,
+                  }}
+                  component={Link}
+                  to="/"
+                >
+                  <HomeIcon />
+                </Fab>
+              </Tooltip>
+            </Zoom>
+          )}
 
-      {location.pathname !== '/' && !location.pathname.includes('/szekcio') && (
-        <Zoom in>
-          <Tooltip title="Vissza" placement="bottom" arrow>
-            <Fab
-              color="secondary"
-              sx={{
-                position: 'absolute',
-                right: location.pathname !== '/infopult' ? 100 : 100,
-                top: 80,
-                zIndex: 800,
-                display: { lg: 'flex', xs: 'none' },
-              }}
-              onClick={() => navigate(-1)}
-            >
-              <ArrowBackIcon />
-            </Fab>
-          </Tooltip>
-        </Zoom>
+          {location.pathname !== '/infopult' && isInfoButtonVisible && (
+            <Zoom in>
+              <Tooltip title="Tovább az információs pulthoz" placement="bottom" arrow>
+                <Fab
+                  color="secondary"
+                  sx={{
+                    position: 'absolute',
+                    right: location.pathname !== '/' ? 100 : 30,
+                    top: 80,
+                    zIndex: 800,
+                    display: { lg: 'flex', xs: 'none' },
+                  }}
+                  component={Link}
+                  to="/infopult"
+                >
+                  <InfoIcon />
+                </Fab>
+              </Tooltip>
+            </Zoom>
+          )}
+
+          {location.pathname !== '/' && !location.pathname.includes('/szekcio') && (
+            <Zoom in>
+              <Tooltip title="Vissza" placement="bottom" arrow>
+                <Fab
+                  color="secondary"
+                  sx={{
+                    position: 'absolute',
+                    right: location.pathname !== '/infopult' ? 100 : 100,
+                    top: 80,
+                    zIndex: 800,
+                    display: { lg: 'flex', xs: 'none' },
+                  }}
+                  onClick={() => navigate(-1)}
+                >
+                  <ArrowBackIcon />
+                </Fab>
+              </Tooltip>
+            </Zoom>
+          )}
+        </>
       )}
     </>
   );

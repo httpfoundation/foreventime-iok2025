@@ -58,7 +58,7 @@ const notificationTimeout = 10 * 1000;
 const Message = (props: {
   message?: DatoMessage;
   notification?: boolean;
-  onHide?: (id: number) => void;
+  onHide?: (id?: string) => void;
 }) => {
   const [isIn, setIsIn] = React.useState(true);
 
@@ -75,7 +75,7 @@ const Message = (props: {
             <IconButton
               sx={{ position: 'absolute', top: '10px', right: '0' }}
               onClick={() => {
-                if (props.onHide) props.onHide(Number(props.message?.id));
+                if (props.onHide) props.onHide(props.message?.id);
               }}
             >
               <CloseIcon />
@@ -116,7 +116,7 @@ const MessageBoard = () => {
   const messages = useMessages();
 
   useEffect(() => {
-    iokLocalStorage('set', 'readMessages', JSON.stringify(messages.map((m) => Number(m.id))));
+    iokLocalStorage('set', 'readMessages', JSON.stringify(messages.map((m) => m.id)));
   }, [messages]);
   return (
     <PageContainer container>
@@ -131,16 +131,15 @@ const MessageBoard = () => {
 export const MessageNotifications = () => {
   const messages = useMessages();
 
-  const [readMessages, setReadMessages] = React.useState<number[]>(
+  const [readMessages, setReadMessages] = React.useState<(string | undefined)[]>(
     JSON.parse(iokLocalStorage('get', 'readMessages') || '[]'),
   );
 
-  const [timeouts, setTimeouts] = React.useState<Record<number, number | null>>({});
+  const [timeouts, setTimeouts] = React.useState<Record<string, number | null>>({});
 
   const unreadMessages = messages.filter(
     (message) =>
-      !readMessages.includes(Number(message.id)) &&
-      !olderThan(message.createdAt, hideMessagesAfterMins),
+      !readMessages.includes(message.id) && !olderThan(message.createdAt, hideMessagesAfterMins),
   );
   const location = useLocation();
 
@@ -148,17 +147,17 @@ export const MessageNotifications = () => {
     unreadMessages.map((message) => {
       if (!timeouts[message.id]) {
         const timeout = window.setTimeout(() => {
-          setReadMessages((readMessages) => [...readMessages, Number(message.id)]);
+          setReadMessages((readMessages) => [...readMessages, message.id]);
           iokLocalStorage(
             'set',
             'readMessages',
             JSON.stringify(
-              JSON.parse(iokLocalStorage('get', 'readMessages') || '[]').concat(Number(message.id)),
+              JSON.parse(iokLocalStorage('get', 'readMessages') || '[]').concat(message.id),
             ),
           );
-          setTimeouts((timeouts) => ({ ...timeouts, [Number(message.id)]: null }));
+          setTimeouts((timeouts) => ({ ...timeouts, [message.id]: null }));
         }, notificationTimeout);
-        setTimeouts((timeouts) => ({ ...timeouts, [Number(message.id)]: timeout }));
+        setTimeouts((timeouts) => ({ ...timeouts, [message.id]: timeout }));
       }
     });
   }, [unreadMessages]);
