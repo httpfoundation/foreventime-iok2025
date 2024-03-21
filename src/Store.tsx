@@ -386,7 +386,7 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
       staff,
       dashboardElements,
       sponsorCategories,
-      error,
+      error: stages.length === 0 ? error : null,
     }),
     [
       stages,
