@@ -7,7 +7,12 @@ const BottomBar = () => {
   const underMd = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   const smallHeight = useMediaQuery('screen and (max-height: 650px)');
 
-  const hideBottomBar = pathname.startsWith('/stage') || pathname.startsWith('/szekcio') || underMd;
+  const hideBottomBar =
+    pathname.startsWith('/stage') ||
+    pathname.startsWith('/szekcio') ||
+    pathname.startsWith('/iok-cafe') ||
+    underMd;
+
   const showBottomPadding =
     ['/tamogatok', '/eloadasok', '/ertekeles', '/http-csapat', '/etlap', '/utmutato'].includes(
       pathname,
