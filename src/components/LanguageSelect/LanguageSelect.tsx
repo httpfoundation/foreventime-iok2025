@@ -33,12 +33,11 @@ const LanguageSelect = (props: {
           }
           color="secondary"
           key={option.language.id}
-          label={
-            option.language.name +
-            ' (' +
-            (option.live ? option.language.liveLabel : option.language.recordingLabel) +
-            ')'
-          }
+          label={`${option.language.name} ${
+            !option.language.liveLabel
+              ? ''
+              : `(${option.live ? option.language.liveLabel : option.language.recordingLabel})`
+          }`}
           icon={option.language.image?.url ? undefined : <LanguageIcon />}
           onClick={() => onChange(option.language.id)}
           deleteIcon={<DoneIcon sx={{ color: 'grey.300' }} />}
