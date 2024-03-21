@@ -8,7 +8,7 @@ const PageContainer = (props: {
   light?: boolean;
   title?: string;
 }) => {
-  const Parent = (props.container ? MuiContainer : MuiBox) as React.ElementType;
+  const Parent = (props.container ? MuiContainer : MuiBox) as any;
   return (
     <>
       <PageHeaderTitle title={props.title} />

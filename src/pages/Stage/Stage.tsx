@@ -372,9 +372,11 @@ const StagePage = () => {
   );
 };
 
-const YoutubeVideoComponent = (props: { videoId: string }) => {
+const YouTubeVideoPatch = YouTubeVideo as any
+
+const YoutubeVideoComponent = (props: { videoId: string })  => {
   return (
-    <YouTubeVideo
+    <YouTubeVideoPatch
       /* key={key} */
       videoId={props.videoId}
       containerClassName="embed-video"
