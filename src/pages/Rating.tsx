@@ -189,6 +189,20 @@ const Rating = () => {
 	{id: "elegedett-app", question: "Mennyire vagy elégedett az IOK VKK platform által nyújtott szolgáltatásokkal?", type: "all"},
  */
 
+  if (!registration?.id) {
+    return (
+      <PageContainer container>
+        <PageTitle>Értékelés</PageTitle>
+        <Box sx={{ textAlign: 'center', pb: 4 }}>
+          <Typography variant="h6">
+            Az értékelés csak bejelentkezett felhasználóknak érhető el. Amennyiben regisztrált
+            résztvevője vagy a konferenciának, használd a személyre szabott bejelentkezési linkedet.
+          </Typography>
+        </Box>
+      </PageContainer>
+    );
+  }
+
   return (
     <PageContainer container>
       <Dialog open={error}>

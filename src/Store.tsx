@@ -62,10 +62,7 @@ type RegistrationData = {
   stage: number | null;
 };
 
-const useRegistrationData = (
-  regId: string | null,
-  regNeeded = true,
-): [RegistrationData | null, boolean, boolean] => {
+const useRegistrationData = (regId: string | null): [RegistrationData | null, boolean, boolean] => {
   const [registrationData, setRegistrationData] = useState<RegistrationData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -73,6 +70,11 @@ const useRegistrationData = (
 
   useEffect(() => {
     (async () => {
+      const regNeededRes = await fetch(
+        'https://wy8qg2hpoh.execute-api.eu-west-1.amazonaws.com/default/iokRegistrationData?regNeeded=true&eventId=iok2024',
+      );
+      const { regNeeded, datoToken } = await regNeededRes.json();
+
       if (
         regId &&
         String(regId) !==
@@ -103,9 +105,7 @@ const useRegistrationData = (
           id: null,
           name: 'Résztvevő',
           webex_access_token: null,
-          dato_token: '29b8e5c1b0b9682175278954d89a77', // LiveVisitor token, IOK2024
-          // dato_token: "5b4d0c68817732d4ac571d61e85fd7", // LiveVisitor token, EducationNext2022
-          //"dato_token": "86562f6d25113edf16c2608cedf976", // LiveVisitor token, IOK2022
+          dato_token: datoToken,
           stage: null,
           onsite: false,
         };
@@ -367,7 +367,7 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
   const [pageTitle, setPageTitle] = useState('IOK 2024');
 
   const regId = new URLSearchParams(window.location.search).get('q') || null;
-  const [registration, registrationLoading, registrationError] = useRegistrationData(regId, true); // TODO: lambdaból jöjjön
+  const [registration, registrationLoading, registrationError] = useRegistrationData(regId);
 
   const store: IStore = useMemo(
     () => ({
