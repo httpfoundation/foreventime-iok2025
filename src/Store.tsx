@@ -67,23 +67,23 @@ const useRegistrationData = (regId: string | null): [RegistrationData | null, bo
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const event = useEvent();
-
   useEffect(() => {
+    let regId_ = regId;
     (async () => {
       const regNeededRes = await fetch(
         'https://wy8qg2hpoh.execute-api.eu-west-1.amazonaws.com/default/iokRegistrationData?regNeeded=true&eventId=iok2024',
       );
       const { regNeeded, datoToken } = await regNeededRes.json();
-
+      if (!regNeeded) regId_ = null;
       if (
-        regId &&
-        String(regId) !==
+        regId_ &&
+        String(regId_) !==
           String(JSON.parse(iokLocalStorage('get', 'iok_registration_data') as string)?.id)
       ) {
         iokLocalStorage('remove', 'iok_registration_data');
         const res = await fetch(
           'https://wy8qg2hpoh.execute-api.eu-west-1.amazonaws.com/default/iokRegistrationData?id=' +
-            regId +
+            regId_ +
             '&eventId=iok2024',
         );
         const data = await res.json();
