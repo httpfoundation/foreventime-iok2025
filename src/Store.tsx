@@ -250,6 +250,9 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
 				streamNotLive {
 					value
 				}
+        closedRating {
+          value
+        }
 				galleryUrl
 				presidentStaffId		
 			}

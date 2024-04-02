@@ -184,7 +184,7 @@ const Rating = () => {
       type: 'all',
     },
   ];
-  const { rating: ratingText } = useLiveStaticElements();
+  const { rating: ratingText, closedRating } = useLiveStaticElements();
   /* 	{id: "elegedett-menu", question: "Mennyire vagy elégedett a menüvel?", type: "onsite"},
 	{id: "elegedett-app", question: "Mennyire vagy elégedett az IOK VKK platform által nyújtott szolgáltatásokkal?", type: "all"},
  */
@@ -195,8 +195,7 @@ const Rating = () => {
         <PageTitle>Értékelés</PageTitle>
         <Box sx={{ textAlign: 'center', pb: 4 }}>
           <Typography variant="h6">
-            Az értékelés csak bejelentkezett felhasználóknak érhető el. Amennyiben regisztrált
-            résztvevője vagy a konferenciának, használd a személyre szabott bejelentkezési linkedet.
+            <StructuredText data={closedRating} />
           </Typography>
         </Box>
       </PageContainer>

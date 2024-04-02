@@ -162,6 +162,7 @@ export type DatoLiveStaticElement = {
   menu?: any;
   handout?: any;
   menuImage?: any;
+  closedRating?: any;
   streamNotLive?: any;
   galleryUrl?: string;
   presidentStaffId?: number;
