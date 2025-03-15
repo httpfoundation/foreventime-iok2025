@@ -98,7 +98,7 @@ const Header = () => {
 
   const pageTitle = usePageTitle();
   useEffect(() => {
-    document.title = pageTitle ? 'IOK 2024 | ' + pageTitle : 'IOK 2024';
+    document.title = pageTitle ? 'IOK 2025 | ' + pageTitle : 'IOK 2025';
   }, [pageTitle]);
 
   const location = useLocation();
@@ -164,9 +164,9 @@ const Header = () => {
       >
         <Link to="/">
           <img
-            src={underMd ? iokLogoNarrow : iokLogoWide}
+            src={underMd ? iokLogoNarrow : iokLogoNarrow}
             alt="IOK Logo"
-            style={{ height: '75px' }}
+            style={{ height: '160px' }}
           />
         </Link>
       </Box>
@@ -176,17 +176,18 @@ const Header = () => {
         color={'info' as any}
         sx={{
           zIndex: (theme) => theme.zIndex.drawer + 1,
-          backgroundColor: 'info.light',
+          background: 'linear-gradient(90deg, #0D293D 0%, #246DA3 100%)',
+          height: '60px',
         }}
       >
-        <Toolbar sx={{ minHeight: '0 !important', height: '47px' }}>
+        <Toolbar sx={{ minHeight: '0 !important', height: '60px', color: '#fff' }}>
           <Typography
             variant="h6"
             noWrap
-            sx={{ flex: 1, transform: 'translateY(2px)' }}
+            sx={{ flex: 1, transform: 'translateY(3px)', textTransform: 'uppercase', color: '#fff', fontWeight: 'light', textAlign: 'left', paddingLeft: '220px' }}
             align="center"
           >
-            {/* {pageTitle} */}
+            Informatikai Oktatási Konferencia
           </Typography>
           <Typography
             variant="h6"
@@ -196,6 +197,7 @@ const Header = () => {
               transform: 'translateY(2px)',
               mr: 2,
               display: { xs: 'none', md: 'block' },
+              color: '#fff',
             }}
             align="center"
           >
@@ -206,11 +208,13 @@ const Header = () => {
             <IconButton
               size="large"
               edge="start"
-              color="inherit"
+              color="default"
               aria-label="menu"
               onClick={() => setDrawerOpen(!drawerOpen)}
             >
-              <MenuIcon />
+              <MenuIcon sx={{
+                color: '#fff',
+              }} />
             </IconButton>
           )}
         </Toolbar>

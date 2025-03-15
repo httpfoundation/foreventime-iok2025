@@ -30,7 +30,7 @@ const Error = () => {
           Sajnos valami gond van, ezért nem jönnek az adatok a virtuális konferenciaközpontunk
           adatbázisából. Mindent megteszünk, hogy minél hamarabb helyreálljon a rendszer. Ha ez nem
           történne meg egy-két percen belül, akkor kérlek, látogass el a HTTP Alíptvány honlapján
-          található IOK 2024 információs oldalra, ahol részlesebb információval fogunk szolgálni.
+          található IOK 2025 információs oldalra, ahol részlesebb információval fogunk szolgálni.
           {!!infoText && (
             <>
               <br />
@@ -47,7 +47,7 @@ const Error = () => {
             sx={{ pt: 1, pb: 1, mt: 2 }}
             href="https://http-alapitvany.hu/iok-info"
           >
-            Tovább az IOK 2024 infó oldalra a HTTP Alapítvány honlapján
+            Tovább az IOK 2025 infó oldalra a HTTP Alapítvány honlapján
           </Button>
         </Box>
       </Stack>

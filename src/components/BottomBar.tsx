@@ -26,7 +26,7 @@ const BottomBar = () => {
       <Box
         sx={{
           height: '47px',
-          bgcolor: 'info.light',
+          bgcolor: '#4b4c5c',
           position: 'absolute',
           left: 0,
           bottom: 0,
@@ -37,7 +37,7 @@ const BottomBar = () => {
         <img
           src={httpLogo}
           alt="HTTP Logo"
-          style={{ position: 'absolute', right: 0, bottom: 0, height: '85px', width: 'auto' }}
+          style={{ position: 'absolute', right: 0, bottom: 0, height: '140px', width: 'auto', transform: 'translateY(-47px)' }}
         />
       </Box>
     </>

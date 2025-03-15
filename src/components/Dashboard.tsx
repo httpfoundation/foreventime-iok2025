@@ -42,6 +42,7 @@ interface DashboardItemProps {
     | 'top-end'
     | 'top-start'
     | undefined;
+  position?: 'top' | 'bottom';
   onClick?: () => void;
 }
 
@@ -102,6 +103,7 @@ const Dashboard = (props: { items: DashboardElement[] }) => {
               key={key + (upperThanMd ? 'mobile' : 'desktop')}
               timeout={1000}
               tooltipPlacement={key < 4 ? 'top' : 'bottom'}
+              position={key < 4 ? 'bottom' : 'top'}
             />
           );
         })}
@@ -130,6 +132,7 @@ export const DashboardItem = (props: DashboardItemProps) => {
     hoverImg,
     external,
     md,
+    position,
   } = props;
 
   if (empty) return <Grid item xs={xs} xl={xl} lg={lg} display="flex"></Grid>;
@@ -160,6 +163,7 @@ export const DashboardItem = (props: DashboardItemProps) => {
         img={img}
         hoverImg={hoverImg}
         imgWidth={imgWidth}
+        position={position}
       />
     </Grid>
   );

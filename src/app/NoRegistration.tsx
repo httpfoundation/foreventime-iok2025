@@ -64,7 +64,7 @@ export const NoRegistration = () => {
           </Zoom>
         )}
         <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 4 }}>
-          Az IOK 2024 konferencián való részvétel regisztrációhoz kötött!!
+          Az IOK 2025 konferencián való részvétel regisztrációhoz kötött!!
         </Typography>
         <img src={imageOnTop} alt="" style={{ width: '200px', maxWidth: '70%' }} />
         <Typography variant="body1" component="p" sx={{ my: 1 }}>
@@ -77,7 +77,7 @@ export const NoRegistration = () => {
           color="secondary"
           sx={{ mt: 2 }}
           size="large"
-          href="https://iok2024.http-alapitvany.hu/"
+          href="https://iok2025.http-alapitvany.hu/"
         >
           Regisztráció
         </Button>

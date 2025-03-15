@@ -11,12 +11,12 @@ const educationnextCreativeDarkGreen = "#7e923f"
 const educationnextCreativeDarkBlue = "#42518a"
 const educationnextCreativeLightGreen = "#edffcf" */
 
-const iokBlue = '#363c56';
+const iokBlue = '#1b1c31';
 const iokBlue1 = '#8b7ca6';
-const iokDarkBlue = '#3a5067';
-const iokLightBlue = '#7892aa';
+const iokDarkBlue = '#4b4c5c';
+const iokLightBlue = '#566983';
 
-const iokAmber = '#fadd99';
+const iokAmber = '#8e3ccc';
 const iokLightAmber = '#fde9d1';
 const iokDarkAmber = '#a86236';
 
@@ -39,7 +39,7 @@ const colorPrimaryText = iokWhite;
 const colorSecondaryBackground = iokAmber;
 /* const colorSecondaryDark = iokAmber */
 const colorSecondaryLight = iokLightAmber;
-const colorSecondaryText = iokBlue;
+const colorSecondaryText = '#fff';
 
 const colorInfoBackground = iokBlue; //iokBlueGrey
 
@@ -176,6 +176,13 @@ let theme = createTheme({
         },
       },
     },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: '0',
+        },
+      },
+    }
   },
 });
 

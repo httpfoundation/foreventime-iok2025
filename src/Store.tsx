@@ -40,7 +40,7 @@ export const Store = createContext<IStore>({
   talks: [],
   streams: [],
   breakoutRooms: [],
-  pageTitle: 'IOK 2024',
+  pageTitle: 'IOK 2025',
   setPageTitle: (t: string) => {},
   registration: null,
   registrationLoading: true,
@@ -71,7 +71,7 @@ const useRegistrationData = (regId: string | null): [RegistrationData | null, bo
     let regId_ = regId;
     (async () => {
       const regNeededRes = await fetch(
-        'https://wy8qg2hpoh.execute-api.eu-west-1.amazonaws.com/default/iokRegistrationData?regNeeded=true&eventId=iok2024',
+        'https://wy8qg2hpoh.execute-api.eu-west-1.amazonaws.com/default/iokRegistrationData?regNeeded=true&eventId=iok2025',
       );
       const { regNeeded, datoToken } = await regNeededRes.json();
       if (!regNeeded) regId_ = null;
@@ -84,7 +84,7 @@ const useRegistrationData = (regId: string | null): [RegistrationData | null, bo
         const res = await fetch(
           'https://wy8qg2hpoh.execute-api.eu-west-1.amazonaws.com/default/iokRegistrationData?id=' +
             regId_ +
-            '&eventId=iok2024',
+            '&eventId=iok2025',
         );
         const data = await res.json();
         if (data.dato_token) {
@@ -367,7 +367,7 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
     return talks;
   }, [stages]);
 
-  const [pageTitle, setPageTitle] = useState('IOK 2024');
+  const [pageTitle, setPageTitle] = useState('IOK 2025');
 
   const regId = new URLSearchParams(window.location.search).get('q') || null;
   const [registration, registrationLoading, registrationError] = useRegistrationData(regId);

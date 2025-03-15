@@ -12,7 +12,7 @@ const Home = () => {
   );
   return (
     <PageContainer container>
-      <PageTitle>IOK 2024 Aula</PageTitle>
+      <PageTitle>IOK 2025 Aula</PageTitle>
       <Dashboard items={homeDashboardItems} />
     </PageContainer>
   );

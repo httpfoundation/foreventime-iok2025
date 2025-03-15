@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { Fade as Grow } from '@mui/material';
 import { useState } from 'react';
 import { hover } from '@testing-library/user-event/dist/hover';
+import zIndex from '@mui/material/styles/zIndex';
 
 interface BubbleProps {
   corner?: 'bl' | 'br' | 'tl' | 'tr' | 'none';
@@ -41,6 +42,7 @@ interface BubbleProps {
   img?: string;
   hoverImg?: string;
   imgWidth?: string;
+  position?: 'top' | 'bottom';
   onClick?: () => void;
 }
 
@@ -104,10 +106,11 @@ const Bubble = (props: BubbleProps) => {
     external,
     to,
     light,
+    position
   } = props;
   //"xl" is the default size
   const width = size === 'xs' ? '350px' : size === 'lg' ? '200px' : '450px';
-  const borderRadius = size === 'xs' ? '250px' : size === 'lg' ? '140px' : '350px';
+  const borderRadius = 0;
   const [image, setImage] = useState(img);
   const underMd = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
 
@@ -118,6 +121,7 @@ const Bubble = (props: BubbleProps) => {
     borderTopRightRadius: corner === 'tr' ? '0' : borderRadius,
     borderTopLeftRadius: corner === 'tl' ? '0' : borderRadius,
     light,
+    position,
   };
   return (
     <Tooltip title={title ?? ''} placement={tooltipPlacement ?? 'top'}>
@@ -131,10 +135,6 @@ const Bubble = (props: BubbleProps) => {
         }}
       >
         <LinkOrOnClick external={external} to={to} onClick={props.onClick}>
-          <>
-            {!underMd && (
-              <BubbleDecoration bubbleWrapperProps={bubbleWrapperProps}></BubbleDecoration>
-            )}
             <Grow in style={{ transformOrigin: '0 0 0' }} {...{ timeout: timeout }}>
               <BubbleContent>
                 <BubbleImage
@@ -143,14 +143,11 @@ const Bubble = (props: BubbleProps) => {
                   width={imgWidth}
                   size={size}
                 />
-
-                {/* 	{props.children} */}
                 <BubbleCaption sx={{ fontSize: { xs: '11px', sm: '13px' } }}>
                   {caption}
                 </BubbleCaption>
               </BubbleContent>
             </Grow>
-          </>
         </LinkOrOnClick>
       </BubbleWrapper>
     </Tooltip>
@@ -190,20 +187,23 @@ const BubbleWrapper = styled('div', {
   backgroundColor: bubbleWrapperProps.light
     ? theme.palette.primary.light
     : theme.palette.primary.dark,
-  transition: 'transform 0.2s, box-shadow 0.2s ',
+  transition: 'transform 0.2s, box-shadow 0.2s',
   ...bubbleWrapperProps,
   '&:hover': {
-    transform: 'scale(1.1)',
+    transform: bubbleWrapperProps.position === 'bottom' ? 'scale(0.78) translateY(50%) translateX(37%) rotate(45deg) scale(1.3)' : 'scale(0.78) translateX(-37.5%) translateY(-23%) rotate(45deg)  scale(1.3)',
     boxShadow: '0 .2rem 1.5rem rgba(0,0,0,.15)!important',
+    background: 'linear-gradient(-45deg,rgb(189, 189, 189) 0%, #AD76D8 37%, #8E3CCC 100%)',
+    zIndex: 102,
   },
   boxShadow: '0 .5rem 1rem rgba(0,0,0,.15)!important',
+  transform: bubbleWrapperProps.position === 'bottom' ? 'scale(0.78) translateY(50%) translateX(37%) rotate(45deg)' : 'scale(0.78) translateX(-37.5%) translateY(-23%) rotate(45deg)',
 }));
 
 const BubbleContent = styled('div')(({ theme }) => ({
   position: 'absolute',
   top: '50%',
   left: '50%',
-  transform: 'translate(-50%, -50%)',
+  transform: 'rotate(-45deg) translate(-50%, -50%)',
   textAlign: 'center',
   width: '150px',
 }));
