@@ -143,7 +143,6 @@ let theme = createTheme({
         },
       },
     },
-
     MuiInputBase: {
       styleOverrides: {
         root: {
@@ -155,6 +154,7 @@ let theme = createTheme({
     MuiTextField: {
       styleOverrides: {
         root: {
+          '& .MuiInputBase-root': { borderRadius: '0px' },
           borderColor: colorLightGrey,
           borderStyle: 'solid',
           borderWidth: '0px',

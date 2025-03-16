@@ -103,7 +103,7 @@ export const NoRegistration = () => {
               type="submit"
               variant="contained"
               color="secondary"
-              sx={{ ml: 1, mt: '6px', height: '49px' }}
+              sx={{ ml: 1, height: '49px', mt: '12px' }}
             >
               <LoginIcon sx={{ transform: 'translateX(-2px)' }} />
             </Button>
