@@ -119,7 +119,7 @@ const ScheduleItemContainer = styled('div', { shouldForwardProp: (prop) => prop 
 	margin: 15px 0;
 	transition: all 0.2s ease-out;
 	padding: 10px;
-	border-radius: 40px;
+	border-radius: 0px;
 	${
     !noClick
       ? `

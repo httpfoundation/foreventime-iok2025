@@ -43,6 +43,8 @@ interface BubbleProps {
   hoverImg?: string;
   imgWidth?: string;
   position?: 'top' | 'bottom';
+  onMobile?: boolean;
+  index?: number;
   onClick?: () => void;
 }
 
@@ -55,6 +57,9 @@ interface BubbleWrapperProps {
     borderTopLeftRadius: string;
     light?: boolean;
     caption?: string;
+    onMobile?: boolean;
+    index?: number;
+    position?: 'top' | 'bottom';
   };
 }
 
@@ -106,10 +111,12 @@ const Bubble = (props: BubbleProps) => {
     external,
     to,
     light,
-    position
+    position,
+    onMobile,
+    index
   } = props;
   //"xl" is the default size
-  const width = size === 'xs' ? '350px' : size === 'lg' ? '200px' : '450px';
+  const width = '100%'
   const borderRadius = 0;
   const [image, setImage] = useState(img);
   const underMd = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
@@ -122,9 +129,15 @@ const Bubble = (props: BubbleProps) => {
     borderTopLeftRadius: corner === 'tl' ? '0' : borderRadius,
     light,
     position,
+    onMobile: onMobile,
+    index
   };
   return (
     <Tooltip title={title ?? ''} placement={tooltipPlacement ?? 'top'}>
+      <>
+     {/*  {!underMd && position === "bottom" && (
+        <BubbleDecoration bubbleWrapperProps={bubbleWrapperProps}></BubbleDecoration>
+      )} */}
       <BubbleWrapper
         bubbleWrapperProps={bubbleWrapperProps}
         onMouseEnter={() => {
@@ -143,99 +156,82 @@ const Bubble = (props: BubbleProps) => {
                   width={imgWidth}
                   size={size}
                 />
-                <BubbleCaption sx={{ fontSize: { xs: '11px', sm: '13px' } }}>
+                <BubbleCaption sx={{ fontSize: { xs: '16px', sm: '20px' } }}>
                   {caption}
                 </BubbleCaption>
               </BubbleContent>
             </Grow>
         </LinkOrOnClick>
       </BubbleWrapper>
+      </>
     </Tooltip>
   );
 };
 
 const BubbleDecoration = styled('div')<BubbleWrapperProps>(({ theme, bubbleWrapperProps }) => ({
-  borderColor: theme.palette.secondary.main,
   width: '100%',
   height: '100%',
-  borderBottomRightRadius: bubbleWrapperProps.borderBottomRightRadius,
-  borderBottomLeftRadius: bubbleWrapperProps.borderBottomLeftRadius,
-  borderTopRightRadius: bubbleWrapperProps.borderTopRightRadius,
-  borderTopLeftRadius: bubbleWrapperProps.borderTopLeftRadius,
   zIndex: '10',
-  borderStyle: 'solid',
-  borderWidth: '1px',
   overflow: 'hidden',
   position: 'absolute',
   transition: 'all 0.3s ease-in-out',
-  top: '-12px',
-  left: '-12px',
+  top: '12px',
+  left: '12px',
   '&:hover': {
     top: '0px',
     left: '0px',
   },
+  background: 'linear-gradient(135deg, #50D1FF 0%, #307D99 100%)',
 }));
 
 const BubbleWrapper = styled('div', {
   shouldForwardProp: (prop) => prop !== 'bubbleWrapperProps',
 })<BubbleWrapperProps>(({ theme, bubbleWrapperProps }) => ({
   //border: `2px solid ${theme.palette.secondary.main}`,
-  display: 'inlineBlock',
+  display: 'inline-block',
   position: 'relative',
   zIndex: 101,
   aspectRatio: '1',
-  backgroundColor: bubbleWrapperProps.light
+  backgroundColor: (bubbleWrapperProps.index % 2 === 0)
     ? theme.palette.primary.light
     : theme.palette.primary.dark,
   transition: 'transform 0.2s, box-shadow 0.2s',
   ...bubbleWrapperProps,
   '&:hover': {
-    transform: bubbleWrapperProps.position === 'bottom' ? 'scale(0.78) translateY(50%) translateX(37%) rotate(45deg) scale(1.3)' : 'scale(0.78) translateX(-37.5%) translateY(-23%) rotate(45deg)  scale(1.3)',
+    
     boxShadow: '0 .2rem 1.5rem rgba(0,0,0,.15)!important',
     background: 'linear-gradient(-45deg,rgb(189, 189, 189) 0%, #AD76D8 37%, #8E3CCC 100%)',
     zIndex: 102,
+    transform: bubbleWrapperProps.onMobile ? (bubbleWrapperProps.index % 2 === 0 ? 'translateX(25%) rotate(45deg) scale(0.8)' : 'translateX(-25%) translateY(50%) rotate(45deg) scale(0.8)') : bubbleWrapperProps.index < 4 ? 'translateX(25%) translateY(22%) rotate(45deg) scale(0.8)' : 'translateX(-25%) translateY(-22%) rotate(45deg) scale(0.8)',
   },
   boxShadow: '0 .5rem 1rem rgba(0,0,0,.15)!important',
-  transform: bubbleWrapperProps.position === 'bottom' ? 'scale(0.78) translateY(50%) translateX(37%) rotate(45deg)' : 'scale(0.78) translateX(-37.5%) translateY(-23%) rotate(45deg)',
+  transform: bubbleWrapperProps.onMobile ? (bubbleWrapperProps.index % 2 === 0 ? 'translateX(25%) rotate(45deg) scale(0.7071)' : 'translateX(-25%) translateY(50%) rotate(45deg) scale(0.7071)') : bubbleWrapperProps.index < 4 ? 'translateX(25%) translateY(25%) rotate(45deg) scale(0.66)' : 'translateX(-25%) translateY(-25%) rotate(45deg) scale(0.66)',
 }));
 
 const BubbleContent = styled('div')(({ theme }) => ({
   position: 'absolute',
   top: '50%',
   left: '50%',
-  transform: 'rotate(-45deg) translate(-50%, -50%)',
   textAlign: 'center',
-  width: '150px',
+  width: '100%',
+  transform: 'rotate(-45deg) translate(-50%, -50%)',
 }));
 
 const BubbleCaption = styled(Typography)(({ theme }) => ({
   color: theme.palette.primary.contrastText,
   minHeight: '38px',
-  fontWeight: '200',
+  fontWeight: '500',
   textTransform: 'none',
   margin: 'auto',
   width: '85%',
-  marginLeft: '12px',
 }));
 
 const BubbleImage = styled('img', {
   shouldForwardProp: (prop) => prop !== 'width' && prop !== 'size',
 })<{ width?: string; size?: string }>(({ theme, width, size }) => {
-  if (width) return width;
-  else
-    return {
-      width:
-        size === 'xl'
-          ? '140px'
-          : size === 'lg'
-          ? '100px'
-          : size === 'md'
-          ? '100px'
-          : size === 'sm'
-          ? '140px'
-          : '70px',
-      marginLeft: '-0px',
-    };
+  return {
+    width: '60%',
+  }
 });
 
 export default Bubble;

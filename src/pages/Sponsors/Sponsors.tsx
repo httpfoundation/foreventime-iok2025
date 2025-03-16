@@ -62,7 +62,7 @@ const Sponsor = (props: { link: string; image: string; name?: string }) => {
           style={{
             height: '100%',
             verticalAlign: 'middle',
-            borderRadius: '5px',
+            borderRadius: '0px',
             maxHeight: '100px',
           }}
         />

@@ -41,7 +41,7 @@ export const NoRegistration = () => {
           bgcolor: 'primary.main',
           p: 4,
           color: 'text.primary',
-          borderRadius: '8px',
+          borderRadius: '0px',
           textAlign: 'center',
           width: '600px',
           maxWidth: '100%',

@@ -11,7 +11,7 @@ const PresenterWrapper = styled('div', { shouldForwardProp: (prop) => prop !== '
 	flex-direction: column;
 	height: 100%;
 	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
-	border-radius: 12px;
+	border-radius: 0px;
 	overflow: hidden;
 	transition: all .2s ease-in-out;
 	background-color: #fff;

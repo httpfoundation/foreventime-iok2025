@@ -10,7 +10,7 @@ import { useState } from 'react';
 const PresenterImage = styled('img')`
   width: 100%;
   height: auto;
-  border-radius: 20px;
+  border-radius: 0px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 `;
 

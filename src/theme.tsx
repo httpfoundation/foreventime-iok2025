@@ -1,4 +1,5 @@
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
+import { transform } from 'typescript';
 
 /* const educationnextBlue = "#273568"
 const educationnextDarkBlue = "#132a73"
@@ -182,7 +183,22 @@ let theme = createTheme({
           borderRadius: '0',
         },
       },
-    }
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          backgroundColor: iokAmber,
+          color: iokWhite,
+          '&:hover': {
+            backgroundColor: iokAmber,
+          },
+          borderRadius: '0',
+          '.MuiChip-label': {
+            transform: 'translateY(1px)',
+          }
+        },
+      },
+    },
   },
 });
 

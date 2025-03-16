@@ -228,7 +228,7 @@ const Rating = () => {
       </Box>
       {ratingsSent && (
         <Box sx={{ width: '600px', maxWidth: '100%', mx: 'auto', mb: 2 }}>
-          <Paper sx={{ p: 2, textAlign: 'center' }}>
+          <Paper sx={{ p: 2, textAlign: 'center', borderRadius: 0 }}>
             <Typography variant="h6" fontWeight={700} align="center" sx={{ mt: 0.5 }}>
               Köszönjük, hogy értékelted a konferenciát!
             </Typography>
@@ -240,7 +240,7 @@ const Rating = () => {
         <Box sx={{ width: '600px', maxWidth: '100%', mx: 'auto' }}>
           {shownStages.map((stage, index) => {
             return (
-              <Paper sx={{ px: 2, mb: 2, pb: 1, pt: 2, color: 'text.secondary' }} key={index}>
+              <Paper sx={{ px: 2, mb: 2, pb: 1, pt: 2, color: 'text.secondary', borderRadius: 0 }} key={index}>
                 <Typography variant="h6" fontWeight={700} align="center" sx={{ mt: 0.5 }}>
                   {stage.pageTitle}
                 </Typography>
@@ -262,7 +262,7 @@ const Rating = () => {
             );
           })}
 
-          <Paper sx={{ px: 2, mb: 2, pb: 2, pt: '1px', color: 'text.secondary' }}>
+          <Paper sx={{ px: 2, mb: 2, pb: 2, pt: '1px', color: 'text.secondary', borderRadius: 0 }}>
             {otherQuestions.map((question, index) =>
               question.type === 'all' ||
               (question.type === 'onsite' && registration?.onsite) ||

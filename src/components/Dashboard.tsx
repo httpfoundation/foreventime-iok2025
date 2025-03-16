@@ -43,6 +43,8 @@ interface DashboardItemProps {
     | 'top-start'
     | undefined;
   position?: 'top' | 'bottom';
+  onMobile?: boolean;
+  index?: number;
   onClick?: () => void;
 }
 
@@ -63,20 +65,24 @@ const Dashboard = (props: { items: DashboardElement[] }) => {
     ? 'sm'
     : 'xs';
   const xs = 6;
-  const md = 4;
+  const md = 3;
   const xl = 3;
   const lg = 3;
+  const onMobile = !upperThanMd;
 
   const sortedItems = useMemo(
     () => (!upperThanMd ? [...items].sort((a, b) => a.mobileOrder - b.mobileOrder) : [...items]),
     [items, upperThanMd],
   );
   return (
-    <Box display="flex" alignItems="center" justifyContent="center">
+    <Box display="flex" alignItems="center" justifyContent="center" sx={{
+      width: onMobile ? '130%' : '100%',
+      transform: onMobile ? 'translateX(-12.5%)' : 'unset',
+    }}>
       <Grid
         container
         direction={'row'}
-        spacing={upperThanMd ? 5 : 2}
+        spacing={0}
         sx={{ maxHeight: 'calc(100vh - 162px)', maxWidth: size === 'xl' ? '100%' : '90%' }}
         display="flex"
         alignItems="center"
@@ -104,6 +110,8 @@ const Dashboard = (props: { items: DashboardElement[] }) => {
               timeout={1000}
               tooltipPlacement={key < 4 ? 'top' : 'bottom'}
               position={key < 4 ? 'bottom' : 'top'}
+              onMobile={onMobile}
+              index={key}
             />
           );
         })}
@@ -133,6 +141,8 @@ export const DashboardItem = (props: DashboardItemProps) => {
     external,
     md,
     position,
+    onMobile,
+    index
   } = props;
 
   if (empty) return <Grid item xs={xs} xl={xl} lg={lg} display="flex"></Grid>;
@@ -164,6 +174,8 @@ export const DashboardItem = (props: DashboardItemProps) => {
         hoverImg={hoverImg}
         imgWidth={imgWidth}
         position={position}
+        onMobile={onMobile}
+        index={index}
       />
     </Grid>
   );

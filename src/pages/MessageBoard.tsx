@@ -28,8 +28,9 @@ const hideMessagesAfterMins = 15;
 const MessageContainer = styled(Card)<{ notification?: boolean }>(
   ({ theme, notification }) => `
 	padding: 0 0.5rem;
-	border-radius: 15px;
+	border-radius: 0px;
 	margin-bottom: 25px;
+  z-index: 1000;
 	${
     notification
       ? `

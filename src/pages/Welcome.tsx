@@ -12,7 +12,7 @@ import { iokLocalStorage } from '../utils';
 const ChairmanImage = styled('img')`
   width: 100%;
   height: auto;
-  border-radius: 20px;
+  border-radius: 0px;
 `;
 
 const Title = styled(Typography)<TypographyProps>(
