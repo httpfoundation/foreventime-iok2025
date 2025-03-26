@@ -158,6 +158,7 @@ export const DashboardItem = (props: DashboardItemProps) => {
       alignItems="center"
       justifyContent="center"
       textAlign="center"
+      style={{ position: 'relative' }} 
     >
       <Bubble
         size={size}

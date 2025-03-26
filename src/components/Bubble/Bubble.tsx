@@ -76,20 +76,20 @@ const LinkOrOnClick = (props: {
   if (to) {
     if (external2)
       return (
-        <a target="_blank" rel="noreferrer noopener" href={to} style={style}>
+        <a target="_blank" rel="noreferrer noopener" href={to} style={{...style, position: 'absolute'}}>
           {props.children}
         </a>
       );
     else
       return (
-        <Link style={style} to={to}>
+        <Link style={{...style, position: 'relative'}} to={to}>
           {props.children}
         </Link>
       );
   }
   if (onClick) {
     return (
-      <div style={style} onClick={onClick}>
+      <div style={{...style}} onClick={onClick}>
         {props.children}
       </div>
     );
@@ -138,7 +138,8 @@ const Bubble = (props: BubbleProps) => {
      {/*  {!underMd && position === "bottom" && (
         <BubbleDecoration bubbleWrapperProps={bubbleWrapperProps}></BubbleDecoration>
       )} */}
-      <BubbleWrapper
+{/*       <BubbleDecoration bubbleWrapperProps={bubbleWrapperProps}></BubbleDecoration>
+ */}      <BubbleWrapper
         bubbleWrapperProps={bubbleWrapperProps}
         onMouseEnter={() => {
           if (hoverImg) setImage(hoverImg);
@@ -156,7 +157,7 @@ const Bubble = (props: BubbleProps) => {
                   width={imgWidth}
                   size={size}
                 />
-                <BubbleCaption sx={{ fontSize: { xs: '16px', sm: '20px' } }}>
+                <BubbleCaption onMobile={onMobile} index={bubbleWrapperProps.index} sx={{ fontSize: { xs: '22px', sm: '24px' } }}>
                   {caption}
                 </BubbleCaption>
               </BubbleContent>
@@ -169,19 +170,14 @@ const Bubble = (props: BubbleProps) => {
 };
 
 const BubbleDecoration = styled('div')<BubbleWrapperProps>(({ theme, bubbleWrapperProps }) => ({
-  width: '100%',
-  height: '100%',
-  zIndex: '10',
+  width: '60%',
+  height: '60%',
+  zIndex: '0',
   overflow: 'hidden',
   position: 'absolute',
   transition: 'all 0.3s ease-in-out',
-  top: '12px',
-  left: '12px',
-  '&:hover': {
-    top: '0px',
-    left: '0px',
-  },
-  background: 'linear-gradient(135deg, #50D1FF 0%, #307D99 100%)',
+  background: 'linear-gradient(90deg, #50D1FF 0%, #307D99 100%)',
+  transform: bubbleWrapperProps.onMobile ? (bubbleWrapperProps.index % 2 === 0 ? 'translateX(25%) rotate(45deg) scale(0.7071)' : 'translateX(-25%) translateY(50%) rotate(45deg) scale(0.7071)') : bubbleWrapperProps.index < 4 ? 'translateX(25%) translateY(25%) rotate(45deg) scale(0.66)' : 'translateX(-25%) translateY(-25%) rotate(45deg) scale(0.66)',
 }));
 
 const BubbleWrapper = styled('div', {
@@ -214,16 +210,30 @@ const BubbleContent = styled('div')(({ theme }) => ({
   left: '50%',
   textAlign: 'center',
   width: '100%',
-  transform: 'rotate(-45deg) translate(-50%, -50%)',
+  height: '100%',
+  transform: 'rotate(-90deg) translate(-50%, -50%) ',
 }));
 
-const BubbleCaption = styled(Typography)(({ theme }) => ({
+const BubbleCaption = styled(Typography, {
+  shouldForwardProp: (prop) => prop !== 'index' && prop !== 'onMobile',
+})<{index?: number, onMobile?: boolean}>(({ theme, index, onMobile }) => ({
   color: theme.palette.primary.contrastText,
   minHeight: '38px',
+  lineHeight: '38px',
   fontWeight: '500',
   textTransform: 'none',
-  margin: 'auto',
-  width: '85%',
+  width: '100%',
+  position: 'absolute',
+  textAlign: 'left',
+  left: onMobile ? ((index||0) % 2 === 0 ? '0' : '100%') : undefined,
+  transformOrigin: '0 0 0',
+  top: onMobile ?  
+  0
+  : (((index||0)>=4) ? '100%' : undefined),
+  transform: onMobile
+  ? ((index||0) % 2 === 0 ? 'translateY(-100%)' : 'rotate(90deg) translateY(-100%) translateX(10px)')
+  :(((index||0)<4) ? 'translateY(-100%)' : undefined),
+  padding: '5px 0',
 }));
 
 const BubbleImage = styled('img', {
@@ -231,6 +241,10 @@ const BubbleImage = styled('img', {
 })<{ width?: string; size?: string }>(({ theme, width, size }) => {
   return {
     width: '60%',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%) rotate(45deg)',
   }
 });
 
