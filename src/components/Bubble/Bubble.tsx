@@ -220,7 +220,7 @@ const BubbleCaption = styled(Typography, {
   color: theme.palette.primary.contrastText,
   minHeight: '38px',
   lineHeight: '38px',
-  fontWeight: '500',
+  fontWeight: '300',
   textTransform: 'none',
   width: '100%',
   position: 'absolute',
