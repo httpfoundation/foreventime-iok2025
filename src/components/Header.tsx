@@ -1,41 +1,40 @@
 import {
   AppBar,
-  Toolbar,
-  Typography,
-  Drawer,
-  List,
-  ListItemText,
-  ListItemIcon,
-  ListItemButton,
-  ListSubheader,
-  Box,
-  IconButton,
   Avatar,
+  Box,
   Divider,
+  Drawer,
   Fab,
+  IconButton,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  ListSubheader,
+  Toolbar,
   Tooltip,
+  Typography,
   Zoom,
   useMediaQuery,
 } from '@mui/material';
 import { darken, useTheme } from '@mui/material/styles';
 
 import {
-  Home as HomeIcon,
-  Menu as MenuIcon,
-  People as PeopleIcon,
+  ArrowBack as ArrowBackIcon,
   Coffee as CoffeeIcon,
-  Star as StarIcon,
   EventNote as EventNoteIcon,
+  Home as HomeIcon,
+  Info as InfoIcon,
   LiveTv as LiveTvIcon,
   Logout as LogoutIcon,
-  Info as InfoIcon,
-  ArrowBack as ArrowBackIcon,
+  Menu as MenuIcon,
+  People as PeopleIcon,
+  Star as StarIcon,
 } from '@mui/icons-material';
 
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useStages, usePageTitle, useRegistration, useError } from '../Store';
-import iokLogoWide from '../assets/img/IOK Logo Wide.png';
+import { useError, usePageTitle, useRegistration, useStages } from '../Store';
 import iokLogoNarrow from '../assets/img/IOK Logo Narrow.png';
 //import iokLogo from "../assets/images/iok2022_logo_w_httpw_sm.png"
 //import educationnextLogo from "../assets/images/educationnextlogo_inverz.png"
@@ -184,7 +183,16 @@ const Header = () => {
           <Typography
             variant="h6"
             noWrap
-            sx={{ flex: 1, transform: 'translateY(3px)', textTransform: 'uppercase', color: '#fff', fontWeight: 'light', textAlign: 'left', paddingLeft: '220px' }}
+            sx={{
+              flex: 1,
+              transform: 'translateY(3px)',
+              textTransform: 'uppercase',
+              color: '#fff',
+              fontWeight: 'light',
+              textAlign: 'left',
+              paddingLeft: '220px',
+              display: { xs: 'none', md: 'inline' },
+            }}
             align="center"
           >
             Informatikai Oktatási Konferencia
@@ -212,9 +220,11 @@ const Header = () => {
               aria-label="menu"
               onClick={() => setDrawerOpen(!drawerOpen)}
             >
-              <MenuIcon sx={{
-                color: '#fff',
-              }} />
+              <MenuIcon
+                sx={{
+                  color: '#fff',
+                }}
+              />
             </IconButton>
           )}
         </Toolbar>
@@ -297,3 +307,4 @@ const Logo = styled('img')`
 `;
 
 export default Header;
+
