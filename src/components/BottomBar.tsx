@@ -1,6 +1,7 @@
 import { Box, Theme, useMediaQuery } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import httpLogo from '../assets/img/HTTP Logo.png';
+import pannonLogo from '../assets/img/Pannon.png';
 
 const BottomBar = () => {
   const { pathname } = useLocation();
@@ -34,6 +35,11 @@ const BottomBar = () => {
           zIndex: 100,
         }}
       >
+        <img
+          src={pannonLogo}
+          alt="Pannon Logo"
+          style={{ position: 'absolute', left: 0, bottom: 0, height: '115px', width: 'auto', transform: 'translateY(-47px)' }}
+        />
         <img
           src={httpLogo}
           alt="HTTP Logo"
