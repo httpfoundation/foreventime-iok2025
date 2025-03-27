@@ -55,7 +55,7 @@ const BreakoutRoom = () => {
 	*/
 
   useEffect(() => {
-    setMeetingDestination(webexMeetingDestination);
+    setMeetingDestination(webexMeetingDestination || 'https://httpf.webex.com/meet/itmpklubcafe');
   }, [webexMeetingDestination]);
 
   console.log(meetingDestination);
@@ -156,7 +156,7 @@ const BreakoutRoom = () => {
                 {meetingDestinationLoading ? (
                   <Loader />
                 ) : (
-                  <WebexWidget destination={meetingDestination || null} />
+                  <WebexWidget key={meetingDestination} destination={meetingDestination || null} />
                 )}
               </Suspense>
             </Grid>
