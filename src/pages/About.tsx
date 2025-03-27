@@ -23,29 +23,44 @@ const About = () => {
     <PageContainer container>
       <PageTitle>{staffPageTitle}</PageTitle>
       <StructuredText data={staffText} />
-      <PresenterGrid sx={{ mb: 5 }} columns={{ lg: Math.max(4, staff.length) }}>
+      <PresenterGrid sx={{ mb: 5 }} columns={{ lg: 5 }}>
         {staff.map((speaker, index) => (
           <PresenterCard noClick presenter={speaker} key={index} />
         ))}
       </PresenterGrid>
-      <StructuredText data={mediaText} />
-      <PresenterGrid sx={{ mb: 5 }} columns={{ lg: Math.max(4, staff.length) }}>
-        {media.map((speaker, index) => (
-          <PresenterCard noClick presenter={speaker} key={index} />
-        ))}
-      </PresenterGrid>
-      <StructuredText data={juniorText} />
-      <PresenterGrid columns={{ lg: Math.max(4, staff.length) }}>
-        {junior.map((speaker, index) => (
-          <PresenterCard noClick presenter={speaker} key={index} />
-        ))}
-      </PresenterGrid>
-      <StructuredText data={sessionLeadText} />
-      <PresenterGrid columns={{ lg: Math.max(4, staff.length) }}>
-        {sessionLeaders.map((speaker, index) => (
-          <PresenterCard noClick presenter={speaker} key={index} />
-        ))}
-      </PresenterGrid>
+
+      {media.length > 0 && (
+        <>
+          <StructuredText data={mediaText} />
+          <PresenterGrid sx={{ mb: 5 }} columns={{ lg: 5 }}>
+            {media.map((speaker, index) => (
+              <PresenterCard noClick presenter={speaker} key={index} />
+            ))}
+          </PresenterGrid>
+        </>
+      )}
+
+      {junior.length > 0 && (
+        <>
+          <StructuredText data={juniorText} />
+          <PresenterGrid columns={{ lg: 5 }}>
+            {junior.map((speaker, index) => (
+              <PresenterCard noClick presenter={speaker} key={index} />
+            ))}
+          </PresenterGrid>
+        </>
+      )}
+
+      {sessionLeaders.length > 0 && (
+        <>
+          <StructuredText data={sessionLeadText} />
+          <PresenterGrid columns={{ lg: 5 }}>
+            {sessionLeaders.map((speaker, index) => (
+              <PresenterCard noClick presenter={speaker} key={index} />
+            ))}
+          </PresenterGrid>
+        </>
+      )}
     </PageContainer>
   );
 };
