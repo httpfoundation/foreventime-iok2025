@@ -1,6 +1,6 @@
+import { Container, Typography } from '@mui/material';
 import { PageContainer } from '../../components';
 import PageTitle from '../../components/PageTitle';
-import { Container, Typography } from '@mui/material';
 import { useSponsorCategories } from '../../Store';
 
 const Sponsors = () => {
@@ -25,9 +25,9 @@ const Sponsors = () => {
                 style={{
                   display: 'flex',
                   flexWrap: 'wrap',
-                  justifyContent: 'center',
-                  gap: '10px',
-                  padding: '10px 0',
+                  justifyContent: 'space-evenly',
+                  gap: '40px 10px',
+                  padding: '20px',
                   listStyle: 'none',
                   backgroundColor: '#ade1f7',
                 }}
@@ -63,7 +63,7 @@ const Sponsor = (props: { link: string; image: string; name?: string }) => {
             height: '100%',
             verticalAlign: 'middle',
             borderRadius: '0px',
-            maxHeight: '100px',
+            maxHeight: '75px',
           }}
         />
       </a>
@@ -72,3 +72,4 @@ const Sponsor = (props: { link: string; image: string; name?: string }) => {
 };
 
 export default Sponsors;
+
