@@ -1,9 +1,8 @@
+import { StructuredText } from 'react-datocms';
 import { PageContainer } from '../components';
 import PageTitle from '../components/PageTitle';
-import { StructuredText } from 'react-datocms';
-import { useLiveStaticElements, useStaff } from '../Store';
-import { Grid } from '@mui/material';
 import PresenterCard, { PresenterGrid } from '../components/PresenterCard';
+import { useLiveStaticElements, useStaff } from '../Store';
 import { DatoSpeaker } from '../types';
 
 const About = () => {
@@ -21,7 +20,7 @@ const About = () => {
 
   return (
     <PageContainer container>
-      <PageTitle>A házigazda HTTP-csapat</PageTitle>
+      <PageTitle>A házigazda HTTP-Pannon-csapat</PageTitle>
       <StructuredText data={staffText} />
       <PresenterGrid sx={{ mb: 5 }} columns={{ lg: Math.max(4, staff.length) }}>
         {staff.map((speaker, index) => (
@@ -51,3 +50,4 @@ const About = () => {
 };
 
 export default About;
+
