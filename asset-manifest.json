@@ -1,12 +1,13 @@
 {
   "files": {
     "main.css": "/static/css/main.c00ef97a.css",
-    "main.js": "/static/js/main.685999a6.js",
-    "static/js/736.1ba93523.chunk.js": "/static/js/736.1ba93523.chunk.js",
-    "static/css/552.f1a33473.chunk.css": "/static/css/552.f1a33473.chunk.css",
-    "static/js/552.57fc3e92.chunk.js": "/static/js/552.57fc3e92.chunk.js",
+    "main.js": "/static/js/main.f9069739.js",
+    "static/js/772.5250c988.chunk.js": "/static/js/772.5250c988.chunk.js",
+    "static/css/799.9ad784dc.chunk.css": "/static/css/799.9ad784dc.chunk.css",
+    "static/js/799.0db98a19.chunk.js": "/static/js/799.0db98a19.chunk.js",
     "static/media/87960965.gif": "/static/media/87960965.53146b10875f40aa13dc.gif",
     "static/media/dc7f8e1b.gif": "/static/media/dc7f8e1b.fa17ed6c1baa0358b7bc.gif",
+    "static/media/Pannon.png": "/static/media/Pannon.14469df20fe7cb8cb80a.png",
     "static/media/itmp-1.png": "/static/media/itmp-1.7fd693084c2d944e86ba.png",
     "static/media/HTTP Logo.png": "/static/media/HTTP Logo.df395d1c1af139571a6a.png",
     "static/media/af1a3e22.svg": "/static/media/af1a3e22.d988949da4a82b35fe5d.svg",
@@ -39,13 +40,13 @@
     "static/media/IOK Logo Narrow.png": "/static/media/IOK Logo Narrow.2267febe2305d3ea5d39.png",
     "index.html": "/index.html",
     "main.c00ef97a.css.map": "/static/css/main.c00ef97a.css.map",
-    "main.685999a6.js.map": "/static/js/main.685999a6.js.map",
-    "736.1ba93523.chunk.js.map": "/static/js/736.1ba93523.chunk.js.map",
-    "552.f1a33473.chunk.css.map": "/static/css/552.f1a33473.chunk.css.map",
-    "552.57fc3e92.chunk.js.map": "/static/js/552.57fc3e92.chunk.js.map"
+    "main.f9069739.js.map": "/static/js/main.f9069739.js.map",
+    "772.5250c988.chunk.js.map": "/static/js/772.5250c988.chunk.js.map",
+    "799.9ad784dc.chunk.css.map": "/static/css/799.9ad784dc.chunk.css.map",
+    "799.0db98a19.chunk.js.map": "/static/js/799.0db98a19.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c00ef97a.css",
-    "static/js/main.685999a6.js"
+    "static/js/main.f9069739.js"
   ]
 }
