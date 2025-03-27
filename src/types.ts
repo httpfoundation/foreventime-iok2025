@@ -166,6 +166,7 @@ export type DatoLiveStaticElement = {
   streamNotLive?: any;
   galleryUrl?: string;
   presidentStaffId?: number;
+  staffPageTitle?: string;
 };
 
 export type DashboardElement = {
@@ -186,3 +187,4 @@ export type DashboardElement = {
   enabled: boolean;
   dashboardType: 'home' | 'reception' | 'cafe';
 };
+

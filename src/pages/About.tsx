@@ -11,6 +11,7 @@ const About = () => {
     junior: juniorText,
     media: mediaText,
     sessionLead: sessionLeadText,
+    staffPageTitle,
   } = useLiveStaticElements();
 
   const staff = useStaff('staff') as DatoSpeaker[];
@@ -20,7 +21,7 @@ const About = () => {
 
   return (
     <PageContainer container>
-      <PageTitle>A házigazda HTTP-Pannon-csapat</PageTitle>
+      <PageTitle>{staffPageTitle}</PageTitle>
       <StructuredText data={staffText} />
       <PresenterGrid sx={{ mb: 5 }} columns={{ lg: Math.max(4, staff.length) }}>
         {staff.map((speaker, index) => (

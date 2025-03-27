@@ -1,15 +1,15 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import {
-  DatoStage,
-  DatoSpeaker,
-  DatoTalk,
-  DatoComplex,
+  DashboardElement,
   DatoBreakoutRoom,
+  DatoComplex,
   DatoLiveStaticElement,
   DatoMessage,
+  DatoSpeaker,
   DatoStaff,
+  DatoStage,
   DatoStream,
-  DashboardElement,
+  DatoTalk,
   SponsorCategory,
 } from './types';
 import useQuery, { QueryError } from './useQuery';
@@ -255,6 +255,7 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
         }
 				galleryUrl
 				presidentStaffId		
+        staffPageTitle
 			}
 			allSpeakers(first: 100) {
 				id
@@ -550,3 +551,4 @@ export const useDashboardElements = (type: string) => {
 };
 
 export default Store;
+
