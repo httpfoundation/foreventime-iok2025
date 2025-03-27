@@ -256,6 +256,7 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
 				galleryUrl
 				presidentStaffId		
         staffPageTitle
+        webexMeetingDestination
 			}
 			allSpeakers(first: 100) {
 				id

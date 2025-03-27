@@ -167,6 +167,7 @@ export type DatoLiveStaticElement = {
   galleryUrl?: string;
   presidentStaffId?: number;
   staffPageTitle?: string;
+  webexMeetingDestination?: string;
 };
 
 export type DashboardElement = {
