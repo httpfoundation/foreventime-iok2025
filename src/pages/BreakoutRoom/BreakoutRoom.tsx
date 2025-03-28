@@ -55,42 +55,45 @@ const BreakoutRoom = () => {
 	*/
 
   useEffect(() => {
-    setMeetingDestination(webexMeetingDestination || 'https://httpf.webex.com/meet/itmpklubcafe');
-  }, [webexMeetingDestination]);
+    if (selectedRoom) {
+      setMeetingDestination(webexMeetingDestination || 'https://httpf.webex.com/meet/itmpklubcafe');
+      setMeetingDestinationLoading(!webexMeetingDestination);
+    }
+  }, [webexMeetingDestination, selectedRoom]);
 
   console.log(meetingDestination);
 
-  useEffect(() => {
-    if (selectedRoom) {
-      setMeetingDestinationLoading(true);
+  // useEffect(() => {
+  //   if (selectedRoom) {
+  //     setMeetingDestinationLoading(true);
 
-      fetch('https://wy8qg2hpoh.execute-api.eu-west-1.amazonaws.com/default/iokAddToRoom', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          room_id: selectedRoom.roomId,
-          access_token: registration?.webex_access_token,
-        }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          fetch('https://webexapis.com/v1/rooms/' + selectedRoom.roomId + '/meetingInfo', {
-            method: 'GET',
-            headers: {
-              Authorization: 'Bearer ' + registration?.webex_access_token,
-              'Content-Type': 'application/json',
-            },
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              setMeetingDestinationLoading(false);
-            });
-        });
-    }
-  }, [selectedRoom]);
+  //     fetch('https://wy8qg2hpoh.execute-api.eu-west-1.amazonaws.com/default/iokAddToRoom', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({
+  //         room_id: selectedRoom.roomId,
+  //         access_token: registration?.webex_access_token,
+  //       }),
+  //     })
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         console.log(data);
+  //         fetch('https://webexapis.com/v1/rooms/' + selectedRoom.roomId + '/meetingInfo', {
+  //           method: 'GET',
+  //           headers: {
+  //             Authorization: 'Bearer ' + registration?.webex_access_token,
+  //             'Content-Type': 'application/json',
+  //           },
+  //         })
+  //           .then((res) => res.json())
+  //           .then((data) => {
+  //             setMeetingDestinationLoading(false);
+  //           });
+  //       });
+  //   }
+  // }, [selectedRoom]);
 
   const navigate = useNavigate();
   const location = useLocation();
