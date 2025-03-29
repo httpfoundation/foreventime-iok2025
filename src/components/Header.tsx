@@ -212,6 +212,13 @@ const Header = () => {
             {registration?.id ? registration?.name : ''}
           </Typography>
 
+          <Typography sx={{
+            flex: '1',
+            display: { xs: 'block', md: 'none' },
+          }}>
+
+          </Typography>
+
           {!error && (
             <IconButton
               size="large"
