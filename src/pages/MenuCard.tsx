@@ -1,7 +1,7 @@
 import { PageContainer } from '../components';
 import PageTitle from '../components/PageTitle';
 import { StructuredText } from 'react-datocms';
-import { useLiveStaticElements, useStaff } from '../Store';
+import { useLiveStaticElements } from '../Store';
 import { Box } from '@mui/material';
 import { styled } from '@mui/system';
 

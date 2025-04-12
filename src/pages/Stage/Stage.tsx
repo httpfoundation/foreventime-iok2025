@@ -6,7 +6,6 @@ import {
   Typography,
   Zoom,
   CircularProgress,
-  Alert,
   Tooltip,
   Fab,
 } from '@mui/material';
@@ -14,14 +13,14 @@ import YouTubeVideo from 'react-youtube';
 import './Stage.scss';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import ScheduleItem from '../../components/ScheduleItem/ScheduleItem';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { LanguageSelect, PageTitle } from '../../components';
-import { useLiveStaticElements, useStage, useStages, useStreams } from '../../Store';
+import { useLiveStaticElements, useStage, useStreams } from '../../Store';
 import { Box } from '@mui/system';
 import ItmpImg from '../../assets/img/itmp-1.png';
-import educationNextImage from '../../assets/img/edunext_stage_image.png';
+// import educationNextImage from '../../assets/img/edunext_stage_image.png';
 import { styled, useTheme } from '@mui/material/styles';
-import { PageHeaderTitle } from '../../components/PageContainer';
+// import { PageHeaderTitle } from '../../components/PageContainer';
 import {
   ArrowBackIosNew as ArrowLeftIcon,
   ArrowForwardIos as ArrowRightIcon,
@@ -297,7 +296,7 @@ const StagePage = () => {
                   textColor="secondary"
                   indicatorColor="secondary"
                   value={selectedTab}
-                  onChange={(e, v) => setSelectedTab(v)}
+                  onChange={(_, v) => setSelectedTab(v)}
                   centered
                   sx={{
                     '& button': { color: 'text.primary' },

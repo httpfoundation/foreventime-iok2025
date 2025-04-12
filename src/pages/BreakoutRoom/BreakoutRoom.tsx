@@ -2,8 +2,8 @@ import { Box, CircularProgress, Grid } from '@mui/material';
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { PageContainer, PageTitle } from '../../components';
 import Dashboard from '../../components/Dashboard';
-import { useBreakoutRooms, useRegistration } from '../../Store';
-import { DashboardElement, DashboardItemType, DatoBreakoutRoom } from '../../types';
+import { useBreakoutRooms } from '../../Store';
+import { DashboardElement, DatoBreakoutRoom } from '../../types';
 
 import { StructuredText } from 'react-datocms';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -11,11 +11,11 @@ import { useLiveStaticElements } from '../../Store';
 
 const WebexWidget = lazy(() => import('./WebexWidget'));
 
-type WebexRoom = {
-  id: string;
-  title: string;
-  created: string;
-};
+// type WebexRoom = {
+//   id: string;
+//   title: string;
+//   created: string;
+// };
 
 const Loader = (props: { size?: number }) => (
   <Box sx={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
@@ -23,16 +23,16 @@ const Loader = (props: { size?: number }) => (
   </Box>
 );
 
-type WebexRoomDashboardItem = DashboardItemType;
+// type WebexRoomDashboardItem = DashboardItemType;
 
 //IOK Cafe
 const BreakoutRoom = () => {
-  const [registration] = useRegistration();
+  // const [registration] = useRegistration();
   const { iokCafe: iokCafeInfoText, webexMeetingDestination } = useLiveStaticElements();
   const { iokCafeHandout } = useLiveStaticElements();
   //const [rooms, setRooms] = useState<WebexRoom[]>([])
   const rooms = useBreakoutRooms().filter((room) => room.enabled);
-  const [error, setError] = useState(false);
+  // const [error, setError] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState<DatoBreakoutRoom | null>(null);
   const [meetingDestination, setMeetingDestination] = useState<string | null | undefined>(null);
   const [meetingDestinationLoading, setMeetingDestinationLoading] = useState(false);
@@ -192,4 +192,3 @@ const BreakoutRoom = () => {
 };
 
 export default BreakoutRoom;
-

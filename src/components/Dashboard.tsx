@@ -1,7 +1,7 @@
-import { Grid, useMediaQuery, Box, Tooltip } from '@mui/material';
-import { styled, useTheme } from '@mui/material/styles';
+import { Grid, useMediaQuery, Box } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import Bubble from './Bubble/Bubble';
-import { DashboardElement, DashboardItemType } from '../types';
+import { DashboardElement } from '../types';
 import React, { useMemo } from 'react';
 
 interface DashboardItemProps {
@@ -75,10 +75,15 @@ const Dashboard = (props: { items: DashboardElement[] }) => {
     [items, upperThanMd],
   );
   return (
-    <Box display="flex" alignItems="center" justifyContent="center" sx={{
-      width: onMobile ? '130%' : '100%',
-      transform: onMobile ? 'translateX(-12.5%)' : 'unset',
-    }}>
+    <Box
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      sx={{
+        width: onMobile ? '130%' : '100%',
+        transform: onMobile ? 'translateX(-12.5%)' : 'unset',
+      }}
+    >
       <Grid
         container
         direction={'row'}
@@ -142,7 +147,7 @@ export const DashboardItem = (props: DashboardItemProps) => {
     md,
     position,
     onMobile,
-    index
+    index,
   } = props;
 
   if (empty) return <Grid item xs={xs} xl={xl} lg={lg} display="flex"></Grid>;
@@ -158,7 +163,7 @@ export const DashboardItem = (props: DashboardItemProps) => {
       alignItems="center"
       justifyContent="center"
       textAlign="center"
-      style={{ position: 'relative' }} 
+      style={{ position: 'relative' }}
     >
       <Bubble
         size={size}

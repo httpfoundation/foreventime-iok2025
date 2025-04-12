@@ -2,7 +2,7 @@ import { Typography, TypographyProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 const Paragraph = styled(Typography)<TypographyProps>(
-  ({ theme, align }) => `
+  () => `
 	font-weight: 400;
 	/* font-family: "Roboto", "Helvetica", "Arial", sans-serif; */
 	text-align: justify;

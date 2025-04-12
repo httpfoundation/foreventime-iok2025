@@ -1,7 +1,6 @@
-import { PageContainer, PageSubtitle, Paragraph } from '../components';
-import Bubble from '../components/Bubble/Bubble';
+import { PageContainer } from '../components';
 import PageTitle from '../components/PageTitle';
-import { Box, Button, Container, Grid, Typography, TypographyProps } from '@mui/material';
+import { Box, Button, Grid, Typography, TypographyProps } from '@mui/material';
 import { styled } from '@mui/system';
 import { StructuredText } from 'react-datocms';
 import { useLiveStaticElements, usePresident, useRegistration } from '../Store';
@@ -16,7 +15,7 @@ const ChairmanImage = styled('img')`
 `;
 
 const Title = styled(Typography)<TypographyProps>(
-  ({ theme }) => `
+  () => `
 	text-align: "left";
 	font-weight: 500;
 	margin: 0 0 0 0;
@@ -24,7 +23,7 @@ const Title = styled(Typography)<TypographyProps>(
 );
 
 const Name = styled(Typography)<TypographyProps>(
-  ({ theme }) => `
+  () => `
 	text-align: "left";
 	font-weight: 700;
     font-size: 1.6rem;
@@ -34,7 +33,7 @@ const Name = styled(Typography)<TypographyProps>(
 
 const Welcome = () => {
   const { welcome } = useLiveStaticElements();
-  const [registration, loading] = useRegistration();
+  const [registration] = useRegistration();
   const chairman = usePresident();
   iokLocalStorage('set', 'welcome', 'true');
   return (

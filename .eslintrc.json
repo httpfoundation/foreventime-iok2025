@@ -6,6 +6,7 @@
       "files": ["**/*.ts?(x)"],
       "rules": {
         "semi": "off",
+        "@typescript-eslint/no-explicit-any": "off",
         "no-restricted-imports": [
           "error",
           {

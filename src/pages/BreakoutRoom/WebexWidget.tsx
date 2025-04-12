@@ -1,6 +1,6 @@
 import { WebexMeetingsWidget } from '@webex/widgets';
 import '@webex/widgets/dist/css/webex-widgets.css';
-import { useBreakoutRooms, useRegistration } from '../../Store';
+import { useRegistration } from '../../Store';
 
 enum MeetingControl {
   JOIN = 'join-meeting',
@@ -33,7 +33,7 @@ export const WebexWidget = (props: WebexWidgetProps) => {
     MeetingControl.VIDEO,
     MeetingControl.JOIN,
   ];
-  const breakoutRooms = useBreakoutRooms();
+  // const breakoutRooms = useBreakoutRooms();
   const [registration] = useRegistration();
 
   if (!props.destination) return null;

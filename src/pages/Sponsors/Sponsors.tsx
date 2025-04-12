@@ -12,7 +12,7 @@ const Sponsors = () => {
         <PageTitle>Támogatók és szervezők</PageTitle>
 
         {sponsorCategories &&
-          sponsorCategories.map((category, index) => (
+          sponsorCategories.map((category) => (
             <>
               <Typography
                 variant="h2"
@@ -72,4 +72,3 @@ const Sponsor = (props: { link: string; image: string; name?: string }) => {
 };
 
 export default Sponsors;
-

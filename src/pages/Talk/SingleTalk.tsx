@@ -1,15 +1,13 @@
 import { LiveTv as LiveTvIcon, AccessTime as TimeIcon } from '@mui/icons-material';
 import { Avatar, Button, Chip, Stack, Tooltip } from '@mui/material';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { PageContainer, PageSubtitle, PageTitle, Paragraph } from '../../components';
+import { PageContainer, PageTitle, Paragraph } from '../../components';
 import PresenterCard, { PresenterGrid } from '../../components/PresenterCard';
 import { useTalk } from '../../Store';
-import { Typography, TypographyProps } from '@mui/material';
-import { styled, useTheme } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
 import {
   PlayCircle as PlayCircleIcon,
   DownloadForOffline as DownloadIcon,
-  Info as InfoIcon,
 } from '@mui/icons-material';
 
 export const SingleTalk = () => {
@@ -105,12 +103,12 @@ export const SingleTalk = () => {
   );
 };
 
-const TalkTitle = styled(Typography)<TypographyProps>(
-  ({ theme }) => `
-	text-align: "left";
-	margin: -${theme.spacing(2)} 0 ${theme.spacing(2)} 0;
-`,
-);
+// const TalkTitle = styled(Typography)<TypographyProps>(
+//   ({ theme }) => `
+// 	text-align: "left";
+// 	margin: -${theme.spacing(2)} 0 ${theme.spacing(2)} 0;
+// `,
+// );
 
 /* const PageSubtitle = (props: {children?: React.ReactNode}) => <PageSubtitleStyled  variant="h5">{props.children}</PageSubtitleStyled> */
 

@@ -38,7 +38,6 @@ import { useError, usePageTitle, useRegistration, useStages } from '../Store';
 import iokLogoNarrow from '../assets/img/IOK Logo Narrow.png';
 //import iokLogo from "../assets/images/iok2022_logo_w_httpw_sm.png"
 //import educationnextLogo from "../assets/images/educationnextlogo_inverz.png"
-import { styled } from '@mui/system';
 
 type MenuItem = {
   label: string;
@@ -55,7 +54,7 @@ type DividerMenuItem = {
 const Header = () => {
   const isInfoButtonVisible = true;
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [registration, loading] = useRegistration();
+  const [registration] = useRegistration();
   const stages = useStages();
   const error = useError();
 
@@ -111,7 +110,9 @@ const Header = () => {
         anchor="right"
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
-        PaperProps={{ sx: { bgcolor: (theme) => darken(theme.palette.primary.main, 0.35) } }}
+        PaperProps={{
+          sx: { bgcolor: (theme) => darken(theme.palette.primary.main, 0.35) },
+        }}
       >
         <Box
           sx={{
@@ -159,7 +160,12 @@ const Header = () => {
       </Drawer>
 
       <Box
-        sx={{ position: 'absolute', left: 0, top: 0, zIndex: (theme) => theme.zIndex.drawer + 2 }}
+        sx={{
+          position: 'absolute',
+          left: 0,
+          top: 0,
+          zIndex: (theme) => theme.zIndex.drawer + 2,
+        }}
       >
         <Link to="/">
           <img
@@ -172,7 +178,7 @@ const Header = () => {
 
       <AppBar
         position="fixed"
-        color={'info' as any}
+        color="info"
         sx={{
           zIndex: (theme) => theme.zIndex.drawer + 1,
           background: 'linear-gradient(90deg, #0D293D 0%, #246DA3 100%)',
@@ -212,12 +218,12 @@ const Header = () => {
             {registration?.id ? registration?.name : ''}
           </Typography>
 
-          <Typography sx={{
-            flex: '1',
-            display: { xs: 'block', md: 'none' },
-          }}>
-
-          </Typography>
+          <Typography
+            sx={{
+              flex: '1',
+              display: { xs: 'block', md: 'none' },
+            }}
+          ></Typography>
 
           {!error && (
             <IconButton
@@ -307,11 +313,10 @@ const Header = () => {
   );
 };
 
-const Logo = styled('img')`
-  padding-top: 5px;
-  height: 38px;
-  /*width: 207px;*/
-`;
+// const Logo = styled("img")`
+//   padding-top: 5px;
+//   height: 38px;
+//   /*width: 207px;*/
+// `;
 
 export default Header;
-

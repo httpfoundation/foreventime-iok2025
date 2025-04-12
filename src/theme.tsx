@@ -1,5 +1,4 @@
-import { createTheme, responsiveFontSizes } from '@mui/material/styles';
-import { transform } from 'typescript';
+import { createTheme } from '@mui/material/styles';
 
 /* const educationnextBlue = "#273568"
 const educationnextDarkBlue = "#132a73"
@@ -13,24 +12,24 @@ const educationnextCreativeDarkBlue = "#42518a"
 const educationnextCreativeLightGreen = "#edffcf" */
 
 const iokBlue = '#1b1c31';
-const iokBlue1 = '#8b7ca6';
+// const iokBlue1 = '#8b7ca6';
 const iokDarkBlue = '#4b4c5c';
 const iokLightBlue = '#566983';
 
 const iokAmber = '#8e3ccc';
 const iokLightAmber = '#fde9d1';
-const iokDarkAmber = '#a86236';
+// const iokDarkAmber = '#a86236';
 
 const iokWhite = 'rgba(255, 255, 255, 0.87)';
 const iokBlack = 'rgba(0, 0, 0, 0.87)';
 
 const iokInfo = '#526c84';
 
-const iokCyan = '#48abb9';
+// const iokCyan = '#48abb9';
 
 const iokGrey = '#9e9e9e';
 const iokLightGrey = '#cecece';
-const iokBlueGrey = '#578392';
+// const iokBlueGrey = '#578392';
 
 const colorPrimaryBackground = iokBlue;
 const colorPrimaryDark = iokDarkBlue;
@@ -42,14 +41,14 @@ const colorSecondaryBackground = iokAmber;
 const colorSecondaryLight = iokLightAmber;
 const colorSecondaryText = '#fff';
 
-const colorInfoBackground = iokBlue; //iokBlueGrey
+// const colorInfoBackground = iokBlue; //iokBlueGrey
 
 const colorTextDisabled = iokGrey;
 const colorInfo = iokInfo;
 
 const colorBlack = iokBlack;
 const colorWhite = iokWhite;
-const colorGrey = iokGrey;
+// const colorGrey = iokGrey;
 const colorLightGrey = iokLightGrey;
 
 /* const colorDark = iokDarkBlue //iokAmber // iokDarkBlue
@@ -58,7 +57,7 @@ const colorLight = iokDarkBlue //iokLightAmber //iokLightBlue //"#fff" //educati
 const colorDashboardDark = iokBlue //educationnextCreativeGreen
 const colorDashboardCaption = iokBlue //educationnextDarkGreen */
 
-let theme = createTheme({
+const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
@@ -195,7 +194,7 @@ let theme = createTheme({
           borderRadius: '0',
           '.MuiChip-label': {
             transform: 'translateY(1px)',
-          }
+          },
         },
       },
     },

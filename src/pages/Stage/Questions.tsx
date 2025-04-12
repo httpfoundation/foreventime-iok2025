@@ -52,7 +52,7 @@ export const Questions = (props: { schedule?: DatoTalk[]; stageId?: number }) =>
       talk: String(targetTalk),
       speaker: targetSpeaker !== -1 ? String(targetSpeaker) : null,
       content,
-      registration: anonymus ? null : String(registration?.id) ?? null,
+      registration: anonymus ? null : registration ? String(registration.id) : null,
     };
     setLoading(true);
     try {
@@ -92,7 +92,7 @@ export const Questions = (props: { schedule?: DatoTalk[]; stageId?: number }) =>
           />
           <FormControlLabel
             control={
-              <Checkbox color="secondary" value={anonymus} onChange={(e, c) => setAnonymus(c)} />
+              <Checkbox color="secondary" value={anonymus} onChange={(_, c) => setAnonymus(c)} />
             }
             label="Névtelen kérdés"
             sx={{ my: '5px' }}

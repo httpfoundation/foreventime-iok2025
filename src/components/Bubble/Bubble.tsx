@@ -45,20 +45,20 @@ interface BubbleProps {
   onClick?: () => void;
 }
 
-interface BubbleWrapperProps {
-  bubbleWrapperProps: {
-    width: string;
-    borderBottomRightRadius: string;
-    borderBottomLeftRadius: string;
-    borderTopRightRadius: string;
-    borderTopLeftRadius: string;
-    light?: boolean;
-    caption?: string;
-    onMobile?: boolean;
-    index?: number;
-    position?: 'top' | 'bottom';
-  };
-}
+// interface BubbleWrapperProps {
+//   bubbleWrapperProps: {
+//     width: string;
+//     borderBottomRightRadius: string;
+//     borderBottomLeftRadius: string;
+//     borderTopRightRadius: string;
+//     borderTopLeftRadius: string;
+//     light?: boolean;
+//     caption?: string;
+//     onMobile?: boolean;
+//     index?: number;
+//     position?: 'top' | 'bottom';
+//   };
+// }
 
 const LinkOrOnClick = (props: {
   to?: string;
@@ -66,7 +66,7 @@ const LinkOrOnClick = (props: {
   children: React.ReactElement;
   external?: boolean;
 }) => {
-  const { to, onClick, external } = props;
+  const { to, onClick } = props;
   let external2 = false;
   if (to?.substring(0, 4) === 'http') external2 = true;
   const style = { display: 'block', width: '100%', height: '100%', cursor: 'pointer' };
@@ -176,22 +176,22 @@ const Bubble = (props: BubbleProps) => {
   );
 };
 
-const BubbleDecoration = styled('div')<BubbleWrapperProps>(({ theme, bubbleWrapperProps }) => ({
-  width: '60%',
-  height: '60%',
-  zIndex: '0',
-  overflow: 'hidden',
-  position: 'absolute',
-  transition: 'all 0.3s ease-in-out',
-  background: 'linear-gradient(90deg, #50D1FF 0%, #307D99 100%)',
-  transform: bubbleWrapperProps.onMobile
-    ? bubbleWrapperProps.index! % 2 === 0
-      ? 'translateX(25%) rotate(45deg) scale(0.7071)'
-      : 'translateX(-25%) translateY(50%) rotate(45deg) scale(0.7071)'
-    : bubbleWrapperProps.index! < 4
-    ? 'translateX(25%) translateY(25%) rotate(45deg) scale(0.66)'
-    : 'translateX(-25%) translateY(-25%) rotate(45deg) scale(0.66)',
-}));
+// const BubbleDecoration = styled('div')<BubbleWrapperProps>(({ bubbleWrapperProps }) => ({
+//   width: '60%',
+//   height: '60%',
+//   zIndex: '0',
+//   overflow: 'hidden',
+//   position: 'absolute',
+//   transition: 'all 0.3s ease-in-out',
+//   background: 'linear-gradient(90deg, #50D1FF 0%, #307D99 100%)',
+//   transform: bubbleWrapperProps.onMobile
+//     ? bubbleWrapperProps.index! % 2 === 0
+//       ? 'translateX(25%) rotate(45deg) scale(0.7071)'
+//       : 'translateX(-25%) translateY(50%) rotate(45deg) scale(0.7071)'
+//     : bubbleWrapperProps.index! < 4
+//     ? 'translateX(25%) translateY(25%) rotate(45deg) scale(0.66)'
+//     : 'translateX(-25%) translateY(-25%) rotate(45deg) scale(0.66)',
+// }));
 
 const BubbleWrapper = styled('div', {
   shouldForwardProp: (prop) => prop !== 'bubbleWrapperProps',
@@ -227,7 +227,7 @@ const BubbleWrapper = styled('div', {
     : 'translateX(-25%) translateY(-25%) rotate(45deg) scale(0.66)',
 }));
 
-const BubbleContent = styled('div')(({ theme }) => ({
+const BubbleContent = styled('div')(() => ({
   position: 'absolute',
   top: '50%',
   left: '50%',
@@ -263,7 +263,7 @@ const BubbleCaption = styled(Typography, {
 
 const BubbleImage = styled('img', {
   shouldForwardProp: (prop) => prop !== 'width' && prop !== 'size',
-})<{ width?: string; size?: string }>(({ theme, width, size }) => {
+})<{ width?: string; size?: string }>(() => {
   return {
     width: '60%',
     position: 'absolute',
@@ -275,4 +275,3 @@ const BubbleImage = styled('img', {
 });
 
 export default Bubble;
-

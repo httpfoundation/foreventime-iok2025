@@ -3,8 +3,8 @@ import { DatoSpeaker } from '../../types';
 import { styled } from '@mui/system';
 import { ScheduleTimeCaption } from '..';
 import { useTalk } from '../../Store';
-import { Link, useNavigate } from 'react-router-dom';
-import { Avatar, Badge, Button, IconButton, Tooltip } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { Avatar, Badge, IconButton, Tooltip } from '@mui/material';
 import {
   PlayCircle as PlayCircleIcon,
   DownloadForOffline as DownloadIcon,
@@ -31,7 +31,7 @@ const SpeakerCaption = styled('div')(
 );
 
 const Description = styled('div')(
-  ({ theme }) => `
+  () => `
 		transition: all 0.2s ease-out;
 		overflow: hidden;
 		font-size: 0.9rem;
@@ -45,7 +45,13 @@ const Speaker = (props: { speaker: DatoSpeaker }) => {
 
 const Speakers = (props: { speakers: DatoSpeaker[] | undefined }) => {
   const { speakers } = props;
-  return <>{speakers?.map((speaker) => <Speaker key={speaker.id} speaker={speaker} />)}</>;
+  return (
+    <>
+      {speakers?.map((speaker) => (
+        <Speaker key={speaker.id} speaker={speaker} />
+      ))}
+    </>
+  );
 };
 
 interface SpeakerImageProps {
@@ -93,7 +99,7 @@ const SpeakersImages = (props: { speakers: DatoSpeaker[] | undefined }) => {
   );
 };
 
-const Abstract = (props: { abstract?: String }) => {
+const Abstract = (props: { abstract?: string }) => {
   const { abstract } = props;
   return <Description>{abstract}</Description>;
 };
@@ -140,7 +146,7 @@ const ScheduleItemContainer = styled('div', { shouldForwardProp: (prop) => prop 
 );
 
 const ScheduleItemControls = styled('div')<{ open?: boolean }>(
-  ({ theme, open }) => `
+  ({ open }) => `
 	transition: all 0.1s ease-out;
 	height: 0;
 	overflow: hidden;
@@ -197,7 +203,9 @@ const ScheduleItem = (props: {
               color="secondary"
               onClick={(e) => {
                 e.stopPropagation();
-                props.onPlay && props.onPlay(recording.id);
+                if (props.onPlay) {
+                  props.onPlay(recording.id);
+                }
               }}
             >
               <Badge

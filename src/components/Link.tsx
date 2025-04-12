@@ -1,5 +1,4 @@
 import { Link as ReactRouterLink } from 'react-router-dom';
-import { Link as MuiLink } from '@mui/material';
 import { styled } from '@mui/system';
 
 const Link = (props: { children: React.ReactElement; to?: string; lightColor?: boolean }) => {
@@ -10,7 +9,7 @@ const Link = (props: { children: React.ReactElement; to?: string; lightColor?: b
   );
 };
 
-const StyledLink = styled(ReactRouterLink)(({ theme }) => ({
+const StyledLink = styled(ReactRouterLink)(() => ({
   color: 'white',
   '&:hover': {
     color: 'aqua',

@@ -41,7 +41,7 @@ export const Store = createContext<IStore>({
   streams: [],
   breakoutRooms: [],
   pageTitle: 'IOK 2025',
-  setPageTitle: (t: string) => {},
+  setPageTitle: () => {},
   registration: null,
   registrationLoading: true,
   registrationError: false,
@@ -66,7 +66,7 @@ const useRegistrationData = (regId: string | null): [RegistrationData | null, bo
   const [registrationData, setRegistrationData] = useState<RegistrationData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const event = useEvent();
+  // const event = useEvent();
   useEffect(() => {
     let regId_ = regId;
     (async () => {
@@ -412,6 +412,7 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
       error,
     ],
   );
+  console.log('Srore:', store);
 
   return <Store.Provider value={store}>{props.children}</Store.Provider>;
 };
@@ -478,7 +479,7 @@ export const useStage = (stageSlug?: string) => {
   };
 };
 
-export const useBreakoutRooms = (stageSlug?: string) => {
+export const useBreakoutRooms = () => {
   const store = useStore();
   return store.breakoutRooms;
 };
@@ -540,7 +541,7 @@ export const useError = () => {
 };
 
 export const useEvent = () => {
-  return process.env.EVENT;
+  return import.meta.env.VITE_EVENT;
 };
 
 export const useDashboardElements = (type: string) => {
@@ -552,4 +553,3 @@ export const useDashboardElements = (type: string) => {
 };
 
 export default Store;
-

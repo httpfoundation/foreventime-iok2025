@@ -12,7 +12,6 @@ import {
   DialogContentText,
   DialogTitle,
   Divider,
-  Grid,
   IconButton,
   Paper,
   TextField,
@@ -23,7 +22,6 @@ import { Star as StarFilled, StarOutline as Star } from '@mui/icons-material';
 import { useEffect, useMemo, useState } from 'react';
 import { useDatoClient } from '../useQuery';
 import imageOnTop from '../assets/img/itmp-1.png';
-import edunextImg from '../assets/img/edunext_stage_image.png';
 
 const TalkRate = (props: {
   id: number;
@@ -82,7 +80,7 @@ const Rating = () => {
   const [registration] = useRegistration();
 
   const [loading, setLoading] = useState(true);
-  const [success, setSuccess] = useState(false);
+  // const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
 
   const [ratingsSent, setRatingsSent] = useState<boolean | null>(null);
@@ -120,11 +118,11 @@ const Rating = () => {
     submit = true,
     __ratings: Record<number, number | null> | null = null,
   ) => {
-    let _ratings = __ratings || ratings;
+    const _ratings = __ratings || ratings;
     const data = {
-      registration: String(registration?.id) ?? null,
+      registration: registration ? String(registration?.id) : null,
       ratings: JSON.stringify(
-        Object.fromEntries(Object.entries(_ratings).filter(([_, v]) => v !== null)),
+        Object.fromEntries(Object.entries(_ratings).filter(([, v]) => v !== null)),
       ),
       comment,
       recommendedTopic,
@@ -137,7 +135,7 @@ const Rating = () => {
         ...data,
       });
       if (submit) {
-        setSuccess(true);
+        // setSuccess(true);
         setRatingsSent(true);
         document.getElementById('main')?.scrollTo(0, 0);
       }
@@ -240,7 +238,10 @@ const Rating = () => {
         <Box sx={{ width: '600px', maxWidth: '100%', mx: 'auto' }}>
           {shownStages.map((stage, index) => {
             return (
-              <Paper sx={{ px: 2, mb: 2, pb: 1, pt: 2, color: 'text.secondary', borderRadius: 0 }} key={index}>
+              <Paper
+                sx={{ px: 2, mb: 2, pb: 1, pt: 2, color: 'text.secondary', borderRadius: 0 }}
+                key={index}
+              >
                 <Typography variant="h6" fontWeight={700} align="center" sx={{ mt: 0.5 }}>
                   {stage.pageTitle}
                 </Typography>

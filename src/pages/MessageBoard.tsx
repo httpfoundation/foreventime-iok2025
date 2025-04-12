@@ -4,7 +4,6 @@ import {
   CardHeader,
   Typography,
   Avatar,
-  Divider,
   Slide,
   Box,
   IconButton,
@@ -26,7 +25,7 @@ import { iokLocalStorage } from '../utils';
 const hideMessagesAfterMins = 15;
 
 const MessageContainer = styled(Card)<{ notification?: boolean }>(
-  ({ theme, notification }) => `
+  ({ notification }) => `
 	padding: 0 0.5rem;
 	border-radius: 0px;
 	margin-bottom: 25px;
@@ -61,10 +60,10 @@ const Message = (props: {
   notification?: boolean;
   onHide?: (id?: string) => void;
 }) => {
-  const [isIn, setIsIn] = React.useState(true);
+  const [isIn] = React.useState(true);
 
   if (!props.message) return null;
-  const { title, level, message, staff, createdAt } = props.message;
+  const { title, message, staff, createdAt } = props.message;
   const AnimContainer = props.notification
     ? Slide
     : (props: { children: React.ReactElement; in?: boolean }) => props.children;
@@ -176,7 +175,7 @@ export const MessageNotifications = () => {
         color: 'text.primary',
       }}
     >
-      {unreadMessages.slice(0, 2).map((message, index) => (
+      {unreadMessages.slice(0, 2).map((message) => (
         <Message
           key={message.id}
           message={message}

@@ -8,7 +8,7 @@ import {
   Alert,
   AlertTitle,
   Box,
-  Grow,
+  // Grow,
   Zoom,
 } from '@mui/material';
 import React, { useState } from 'react';
@@ -17,7 +17,7 @@ import imageOnTop from '../assets/img/itmp-1.png';
 import { useRegistration } from '../Store';
 
 export const NoRegistration = () => {
-  const [registration, loading, error] = useRegistration();
+  const [error] = useRegistration();
   const [id, setId] = useState('');
 
   const login = (e: React.FormEvent) => {

@@ -29,7 +29,7 @@ const PresenterWrapper = styled('div', { shouldForwardProp: (prop) => prop !== '
 );
 
 const PresenterCardImage = styled('img')(
-  ({ theme }) => `
+  () => `
 	width: 100%;
 	height: auto;
 	aspect-ratio: 1;
@@ -37,7 +37,7 @@ const PresenterCardImage = styled('img')(
 );
 
 const PresenterDetails = styled('div')(
-  ({ theme }) => `
+  () => `
 	flex: 1;
 	//min-height: 80px;
 	padding: 5px;
@@ -45,7 +45,7 @@ const PresenterDetails = styled('div')(
 );
 
 const PresenterName = styled('div')(
-  ({ theme }) => `
+  () => `
 	font-weight: 700;
     font-size: 0.9rem;
     margin: 10px 0 7px 0;
@@ -54,7 +54,7 @@ const PresenterName = styled('div')(
 );
 
 const PresenterTitle = styled('div')(
-  ({ theme }) => `
+  () => `
 	font-size: 0.7rem;
 	text-align: center;
 	margin-bottom: 5px;
