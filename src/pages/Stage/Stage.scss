@@ -1,7 +1,9 @@
-.embed-video {
-  height: 100%;
+
+
+.embed-video-inner {
   width: 100%;
-  .embed-video-inner {
+  height: 100%;
+  iframe {
     width: 100%;
     height: 100%;
   }
